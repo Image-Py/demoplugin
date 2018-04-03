@@ -1,0 +1,1 @@
+from ...menus.Demos.widgetdemo_wgt import Plugin
