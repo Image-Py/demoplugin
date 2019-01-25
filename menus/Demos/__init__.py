@@ -1,1 +1,1 @@
-catlog = ['filtersdemo_plgs', '-', 'simpledemo_plgs', '-', 'freedemo_plgs', '-', 'readwritedemo_plgs', '-', 'Macros Demo', 'widgetdemo_wgt', 'MarkDown Demo']
+catlog = ['Start Here', '-', 'Markdown Demo', 'Macros Demo', 'Workflow Demo', '-', 'Filter Demo', 'Simple Demo', 'Table Demo', 'Free Demo', '-', 'WidgetDemo']
