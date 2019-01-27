@@ -22,7 +22,7 @@ ImagePy菜单：**Plugins > Manager > Plugins Manager** 在输入框内输入dem
 
 ## 基础预备
 
-1. 什么是插件
+1. [什么是插件](doc/start.md#什么是插件)
 
 2. Hello World （第一个插件）
 
