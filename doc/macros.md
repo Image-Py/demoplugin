@@ -1,10 +1,10 @@
-# Macros 插件
+#  <span id = "Macros">Macros</span> 插件
 
 Macros是一系列的命令记录，用这些记录可以重演操作，我们一般并不会自己编写命令，而是通过宏录制器来完成记录。宏录制器在 **Plugins > Macros> Macros Recorder**。 我们将录制的命令保存到menus或其子文件夹里，mc后缀，重启即可加载到对应位置。
 
 
 
-**关于插件的加载方式**
+**<span id = "关于插件的加载方式">关于插件的加载方式</span>**
 
 1. menus及其子文件夹下的mc后缀文件会被解析成宏。
 
@@ -12,7 +12,7 @@ Macros是一系列的命令记录，用这些记录可以重演操作，我们�
 
    
 
-**高斯模糊再求反**
+**<span id = "高斯模糊再求反">高斯模糊再求反</span>**
 
 ```
 Gaussian>{'sigma': 2}
@@ -29,7 +29,7 @@ Invert>None
 
 
 
-**分割硬币**
+**<span id = "分割硬币">分割硬币</span>**
 
 ```markdown
 coins>None

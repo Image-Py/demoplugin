@@ -1,10 +1,10 @@
-# Tool
+# <span id = "Tool">Tool</span>
 
 Tool插件用来完成鼠标交互，启动时被加载为工具栏上的图标。典型的工具插件是，roi，画笔，测量工具等。
 
 
 
-## 画笔工具
+## <span id = "画笔工具">画笔工具</span>
 
 ```python
 from imagepy.core.engine import Tool
@@ -60,7 +60,7 @@ class Plugin(Tool):
 
 
 
-## Tool的运行机制
+## <span id = "Tool的运行机制">Tool的运行机制</span>
 
 **title:** 标题
 

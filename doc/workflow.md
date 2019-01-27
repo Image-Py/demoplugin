@@ -1,10 +1,10 @@
-# Workflow 插件
+# <span id = "Workflow">Workflow</span>  插件
 
 Macros是一系列的命令记录按顺序执行，而Workflow是Macros和Markdown的混合，同样规定了处理流程，但并不会自动顺序执行，而是每一步可以由用户自己调整参数，甚至过程中可以添加或跳过一些流程，此外每个过程开发者可以设定提示信息。
 
 
 
-**硬币分割工作流**
+**<span id = "硬币分割工作流">硬币分割工作流</span>**
 
 ```markdown
 Coins Segment Workflow Demo
@@ -32,7 +32,7 @@ save the measure result as a csv file.
 
 
 
-**工作流编写及加载方式**
+**<span id = "工作流编写及加载方式">工作流编写及加载方式</span>**
 
 1. 工作流是一个markdown格式的文件，后缀为wf
 2. 前两行是主标题，解析成面板的主标题
