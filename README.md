@@ -57,9 +57,9 @@ ImagePy菜单：**Plugins > Manager > Plugins Manager** 在输入框内输入dem
 2. [Gaussian Demo：带有参数的插件](doc/filter.md#Gaussian)
 3. [Filter运行机制](doc/filter.md#Filter运行机制)
 
-**[Simple: 图像整体操作](doc/simple.md#Invert)**
+**[Simple: 图像整体操作](doc/simple.md#Simple)**
 
-1. [Gaussian 3D Demo：三维滤波](doc/simple.md#Simple)
+1. [Gaussian 3D Demo：三维滤波](doc/simple.md#Gaussian3D)
 2. [Red Lut Demo：操作索引表](doc/simple.md#SetLUT)
 3. [ROI Inflate Demo：操作ROI](doc/simple.md#ROI)
 4. [Unit Demo: 设置比例尺及单位](doc/simple.md#Unit)
