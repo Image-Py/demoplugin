@@ -92,23 +92,23 @@ ImagePy菜单：**Plugins > Manager > Plugins Manager** 在输入框内输入dem
 
 
 
-## 插件项目发布
+## [插件项目发布](doc/publish.md#插件项目发布)
 
-**插件的组织方式**
+**[插件的组织方式](doc/publish.md#功能组织)**
 
-1. 功能划分
-2. 顺序设定
+1. [功能划分](doc/publish.md#功能划分)
+2. [顺序设定](doc/publish.md#顺序设定)
 
-**插件项目的发布**
+**[插件项目的发布](doc/publish.md#创建插件项目仓库)**
 
-1. 编写requirements
-2. 为Readme加入的插件头信息
-3. 发布到ImagePy
+1. [编写requirements](doc/publish.md#requirements)
+2. [为Readme加入的插件头信息](doc/publish.md#readme)
+3. [发布到ImagePy](doc/publish.md#发布到ImagePy)
 
 **插件的安装与管理**
 
-1. 通过连接安装插件
-2. 插件管理器
+1. 通过连接安装插件](doc/publish.md#Widget
+2. 插件管理器](doc/publish.md#Widget
 
 
 
