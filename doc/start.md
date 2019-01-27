@@ -10,7 +10,7 @@ ImagePy是一个扩展性很强的图像处理框架，我们是通过插件来�
 
 
 
-## <span id = "Hello World">Hello World</span>
+## <span id = "Hello">Hello World</span>
 
 我们开始写第一个插件，实现一个简单的hello world.
 
@@ -35,7 +35,7 @@ class Plugin(Free):
 2. plg.py的文件会被解析。
 3. 文件内的Plugins类会被解析为插件，title是菜单显示内容
 
-## <span id = "Who Are You">Who Are You</span>
+## <span id = "Who">Who Are You</span>
 
 接下来我们为这个插件添加一些参数，邀请用户输入名字和年龄。
 

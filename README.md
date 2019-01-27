@@ -20,17 +20,17 @@ ImagePy菜单：**Plugins > Manager > Plugins Manager** 在输入框内输入dem
 
 
 
-## 基础预备
+##  [基础预备](doc/start.md#基础预备)
 
 1. [什么是插件](doc/start.md#什么是插件)
 
-2. Hello World （第一个插件）
+2. [Hello World](doc/start.md#Hello) （第一个插件）
 
-3. Who Are You （带有交互）
+3. [Who Are You](doc/start.md#Who) （带有交互）
 
-4. Questionnaire （参数对话框详解）
+4. [Questionnaire](doc/start.md#Questionnaire) （参数对话框详解）
 
-5. 一个文件内实现多个插件
+5. [一个文件内实现多个插件](doc/start.md#一个文件内实现多个插件)
 
    
 
@@ -111,8 +111,8 @@ ImagePy菜单：**Plugins > Manager > Plugins Manager** 在输入框内输入dem
 
 
 
-## 注意事项
+## [注意事项](doc/start.md#注意事项)
 
-1. 用户友好性
-2. 开发者友好性
-3. 及时沟通
+1. [用户友好性](doc/attention.md#用户友好性)
+2. [开发者友好性](doc/attention.md#开发者友好性)
+3. [及时沟通](doc/attention.md#及时沟通)
