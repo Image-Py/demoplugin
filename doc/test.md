@@ -4,4 +4,6 @@
 
 [测试转页面内](#jump)
 
-[测试转别的页面](attention.md#注意事项)
+[注意事项](attention.md#注意事项)
+
+[注意事项](attention.md#及时沟通)
