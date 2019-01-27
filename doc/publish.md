@@ -30,7 +30,7 @@ Python最大的好处在于有丰富的库，作为一个插件项目，很可�
 
 
 
-**<span id = "readme">编写readme</span>**
+**<span id = "编写readme">编写readme</span>**
 
 readme原本只是用于项目介绍，但在ImagePy中将readme的前几行信息用作插件管理，所以readme前几行需要严格按照如下规范，以本项目为例：
 
