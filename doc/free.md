@@ -1,63 +1,79 @@
 # Free
 
-Free是不需要任何依赖就可以独立运行的插件
+Free是不需要任何依赖就可以独立运行的插件，我们可以在里面做任何事，如创建图像，下载在线资源等。
 
 
 
-## 生成成绩单
+## 创建图像
 
 ```python
 from imagepy.core.engine import Free
 from imagepy import IPy
 import numpy as np
-import pandas as pd
 
-class Score(Free):
-	title = 'Student Score'
+class NewImage(Free):
+    title = 'New Image Demo'
+    para = {'name':'new image','w':300, 'h':300}
+    view = [(str, 'name', 'name',''),
+            (int, 'w', (1,2048), 0,  'width', 'pix'),
+            (int, 'h', (1,2048), 0,  'height', 'pix')]
 
-	def run(self, para=None):
-		index = ['Stutent%s'%i for i in range(1,6)]
-		columns = ['Math', 'Physics', 'Biology', 'History']
-		score = (np.random.rand(20)*40+60).reshape((5,4)).astype(np.uint8)
-		IPy.show_table(pd.DataFrame(score, index, columns), 'Scores')
+    def run(self, para = None):
+        imgs = [np.zeros((para['h'], para['w']), dtype=np.uint8)]
+        IPy.show_img(imgs, para['name'])
 ```
 
-我们通过一个Free插件生成表格，表格是一个pandas.DataFrame对象，通过IPy.show_table(df, title)来展示。
+这里通过一个例子，创建一副新图像，同样我们可以通过para，view进行参数交互。
 
 
 
-## 根据某科成绩排序
+## 关于对话框
 
 ```python
-from imagepy.core.engine import Table
+from imagepy.core.engine import Free
+from imagepy import IPy
 
-class Sort(Table):
-	title = 'Table Sort Demo'
+class About(Free):
+    title = 'About Demo'
 
-	para = {'by':'Math'}
-	view = [('field', 'by', 'item', '')]
-
-	def run(self, tps, data, snap, para=None):
-		tps.data.sort_values(by=para['by'], inplace=True)
+    def run(self, para=None):
+        IPy.alert('ImagePy v0.2')
 ```
 
-这里用到了一种新的参数类型，field，这种参数类型其实是一个单选类型，但是不需要我们提供选项，会自动从当前表格的columns中获取。run中通过inplace参数直接改变DataFrame本身，一些操作无法修改本身，可以将结果return。
+早在Hello World时就接触过，这里用作关于对话框。
 
 
 
-## 绘制柱状图
+## 退出软件
 
 ```python
-class Bar(Table):
-	title = 'Score Chart Demo'
+from imagepy.core.engine import Free
+from imagepy import IPy
+
+class Close(Free):
+    title = 'Exit Program Demo'
     asyn = False
-    
-	para = {'item':[]}
-	view = [('fields', 'item', 'select items')]
 
-	def run(self, tps, data, snap, para = None):
-		data[para['item']].plot.bar(stacked=True, grid=True, title='Score Chart')
-		plt.show()
+    def run(self, para = None):
+        IPy.curapp.Close()
 ```
 
-这里又遇到了一种参数类型，fields，这种参数类型其实是一个多选类型，但是不需要我们提供选项，会自动从当前表格的columns中获取。当表格从界面上被选中若干列，参数对话框里对应的项也会被默认勾上。我们用pandas自带的绘图函数，但值得一提的是，插件中加入了asyn = False，这个标识告诉ImagePy不要启用异步执行run，因为这个插件涉及了UI，必须在主线程进行。
+退出软件是Free类型插件一个非常典型的应用，但值得一提的是，插件中加入了asyn = False，这个标识告诉ImagePy不要启用异步执行run，因为窗口关闭属于UI操作，必须在主线程进行。
+
+
+
+## Free的运行机制
+
+Free相比其他插件是运行机制最简单的，因为Free不需要做任何的流程准备，run也只有通过交互得到的para一个参数，完全放权给开发者。
+
+**para, view:** 
+
+参数字典，具体用法参阅start入门。
+
+**run:** 
+
+获取交互结果，做任何想做的事
+
+**load:** 
+
+def load(self, ips) 最先执行，如果return结果为False，插件将中止执行。默认返回True，如有必要，可以对其进行重载，进行一系列条件检验，如不满足，IPy.alert弹出提示，并返回False。

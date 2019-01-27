@@ -22,4 +22,4 @@ class Plugin ( wx.Panel ):
 	def on_invert(self, event):
 		if IPy.get_ips() is None: return
 		IPy.get_ips().img[:] = 255-IPy.get_ips().img
-		IPy.get_ips().update = 'pix'
+		IPy.get_ips().update()

@@ -1,0 +1,19 @@
+Coins Segment Workflow Demo
+===========================
+## Open Image
+1. coins
+open the coins demo image，we will segment and measure it.
+## Segment
+1. Up And Down Watershed
+check "preview", slide to mark every coins red more or less, mark background green more or less, use "up area".
+## Repair the mask
+1. Fill Holes
+Fill the holes in the conis.
+2. Geometry Filter
+check "preview", give "area" 100, small fragment less than 100 become dark, then give "back color" 0 to clear them.
+## Measure
+1. Geometry Analysis
+check the indecate we need, here check the "cov", count the cov ellipse.
+## Export Result
+1. CSV Save
+save the measure result as a csv file.

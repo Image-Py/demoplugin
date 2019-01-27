@@ -1,14 +1,38 @@
 from imagepy.core.engine import Tool
+from skimage.draw import line, circle
+
+def drawline(img, oldp, newp, w, value):
+    if img.ndim == 2: value = sum(value)/3
+    oy, ox = line(*[int(round(i)) for i in oldp+newp])
+    cy, cx = circle(0, 0, w/2+1e-6)
+    ys = (oy.reshape((-1,1))+cy).clip(0, img.shape[0]-1)
+    xs = (ox.reshape((-1,1))+cx).clip(0, img.shape[1]-1)
+    img[ys.ravel(), xs.ravel()] = value
 
 class Plugin(Tool):
-    title = 'Flood Fill'
-    para = {'w':10}
-    view = [(int, (0,50), 0, 'width/2', 'w','pix')]
+    title = 'Pencil Demo'
+    
+    para = {'width':1, 'value':(255, 255, 255)}
+    view = [(int, 'width', (0,30), 0,  'width', 'pix'),
+            ('color', 'value', 'color', '')]
+    
+    def __init__(self):
+        self.status = False
+        self.oldp = (0,0)
         
     def mouse_down(self, ips, x, y, btn, **key):
-        print(btn)
+        self.status = True
+        self.oldp = (y, x)
         ips.snapshot()
-        x, y, r = int(x), int(y), self.para['w']
-        obj = ips.img[y-r:y+r,x-r:x+r]
-        obj[:] = 255-obj
-        ips.update = 'pix'
+    
+    def mouse_up(self, ips, x, y, btn, **key):
+        self.status = False
+    
+    def mouse_move(self, ips, x, y, btn, **key):
+        if not self.status:return
+        w, value = self.para['width'], self.para['value']
+        drawline(ips.img, self.oldp, (y, x), w, value)
+        self.oldp = (y, x)
+        ips.update()
+        
+    def mouse_wheel(self, ips, x, y, d, **key):pass

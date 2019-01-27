@@ -6,26 +6,26 @@ Macros是一系列的命令记录按顺序执行，而Workflow是Macros和Markdo
 
 **硬币分割工作流**
 
-```
-硬币分割演示
-==========
-## 打开图像
+```markdown
+Coins Segment Workflow Demo
+===========================
+## Open Image
 1. coins
-这是一个硬币图像，我们现在来对每个硬币进行计数及测量
-## 图像分割
+open the coins demo image，we will segment and measure it.
+## Segment
 1. Up And Down Watershed
-勾上preview，调整滑块，使每个硬币多少染上红色，背景多少染上绿色，选择 up area
-## 掩膜修复
+check "preview", slide to mark every coins red more or less, mark background green more or less, use "up area".
+## Repair the mask
 1. Fill Holes
-我们看到有些硬币上带了缝隙，我们对其进行修复
+Fill the holes in the conis.
 2. Geometry Filter
-过滤掉小块碎片，勾上预览，area输100，小块区域变暗，back color 输 0，清除碎片
-## 区域测量
+check "preview", give "area" 100, small fragment less than 100 become dark, then give "back color" 0 to clear them.
+## Measure
 1. Geometry Analysis
-选择需要的指标，我们这里勾上cov，计算区域的误差椭圆
-## 成果导出
+check the indecate we need, here check the "cov", count the cov ellipse.
+## Export Result
 1. CSV Save
-将分析结果导出，保存成excel文件
+save the measure result as a csv file.
 ```
 
 我们在之前的硬币分割宏基础上编写工作流，按照markdown规范，加上必要的注释和章节，后缀为wf，保存到menus或其子文件夹下，加载时会是一个横向的分块面板，分为不同的章节，从左到右依次点击即可。鼠标放在每个小节会显示相应提示信息，点击右上角，可以浏览全部过程。

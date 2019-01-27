@@ -47,7 +47,7 @@ class Plugin(Free):
 	title = 'Who Are You'
 	para = {'name':'', 'age':0}
 	view = [(str, 'name', 'name', 'please'),
-			(int, 'age', (0,120), 0, 'age', 'years old')]
+            (int, 'age', (0,120), 0, 'age', 'years old')]
 
 	def run(self, para=None):
 	    IPy.alert('Name:\t%s\r\nAge:\t%d'%(para['name'], para['age']))
