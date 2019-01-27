@@ -102,7 +102,7 @@ ImagePy菜单：**Plugins > Manager > Plugins Manager** 在输入框内输入dem
 **[插件项目的发布](doc/publish.md#创建插件项目仓库)**
 
 1. [编写requirements](doc/publish.md#requirements)
-2. [为Readme加入的插件头信息](doc/publish.md#readme)
+2. [为Readme加入的插件头信息](doc/publish.md#编写readme)
 3. [发布到ImagePy](doc/publish.md#发布到ImagePy)
 
 **插件的安装与管理**
