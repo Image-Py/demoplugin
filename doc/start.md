@@ -1,6 +1,6 @@
-# 基础预备
+# <span id = "基础预备">基础预备</span>
 
-## 什么是插件
+## <span id = "什么是插件">什么是插件</span>
 
 ImagePy是一个扩展性很强的图像处理框架，我们是通过插件来对ImagePy进行功能扩展的，插件是一段代码或一个文件，放在特定的位置，在ImagePy启动时自动加载，其具体形式可以体现为菜单，工具栏，桌面小部件：
 
@@ -10,7 +10,7 @@ ImagePy是一个扩展性很强的图像处理框架，我们是通过插件来�
 
 
 
-## Hello World
+## <span id = "Hello">Hello World</span>
 
 我们开始写第一个插件，实现一个简单的hello world.
 
@@ -35,7 +35,7 @@ class Plugin(Free):
 2. plg.py的文件会被解析。
 3. 文件内的Plugins类会被解析为插件，title是菜单显示内容
 
-## Who Are You
+## <span id = "Who">Who Are You</span>
 
 接下来我们为这个插件添加一些参数，邀请用户输入名字和年龄。
 
@@ -55,7 +55,7 @@ class Plugin(Free):
 
 ImagePy框架实现了参数对话框生成机制，可以根据para，view来生成对应的交互，完成交互后，我们在run函数中可以通过para参数获取交互结果，我们在下一个例子中会更加详细的讲解各种类型的参数生成。
 
-## Questionnaire
+## <span id = "Questionnaire">Questionnaire</span>
 
 ```python
 from imagepy.core.engine import Free
@@ -114,7 +114,7 @@ class Plugin(Free):
 
 
 
-## 一个文件内实现多个插件
+## <span id = "一个文件内实现多个插件">一个文件内实现多个插件</span>
 
 以上我们分别实现了三个插件，而Python具有语法精简的优势，所以我们也可以在一个文件内实现多个插件，方法如下。
 

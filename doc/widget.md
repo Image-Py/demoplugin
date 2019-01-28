@@ -1,10 +1,10 @@
-# Widget
+# <span id = "Widget">Widget</span>
 
 Widget插件加载为一块面板，其实是继承与wx.Panel的一个ui对象，这给了我们非常大的自由空间，但代价是，我们无法隔绝UI，必须直接编写wxpython代码。例如右侧的导航栏，鹰眼就是widget扩展出的，而之前见到过的宏录制器同样也是widget。
 
 
 
-## 画笔工具
+## <span id = "画笔工具">画笔工具</span>
 
 ```python
 from imagepy import IPy
@@ -45,7 +45,7 @@ class Plugin ( wx.Panel ):
 
 
 
-## Tool的运行机制
+## <span id = "Tool的运行机制">Tool的运行机制</span>
 
 widgets本质上就是一个wx.Panel的子类，必须有title字段作为插件名称，其他的，就是wxpython编程，这里不做详细讨论。
 

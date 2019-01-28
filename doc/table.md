@@ -1,10 +1,10 @@
-# Table
+# <span id = "Table">Table</span>
 
 表格是图像之外另一个非常重要的数据类型，某种意义上，科研图像分析的结果最终都会归到表格。ImagePy对表格类型数据有很好的支持。
 
 
 
-## 生成成绩单
+## <span id = "生成成绩单">生成成绩单</span>
 
 ```python
 from imagepy.core.engine import Free
@@ -26,7 +26,7 @@ class Score(Free):
 
 
 
-## 根据某科成绩排序
+## <span id = "根据某科成绩排序">根据某科成绩排序</span>
 
 ```python
 from imagepy.core.engine import Table
@@ -45,7 +45,7 @@ class Sort(Table):
 
 
 
-## 绘制柱状图
+## <span id = "绘制柱状图">绘制柱状图</span>
 
 ```python
 class Bar(Table):
@@ -64,7 +64,7 @@ class Bar(Table):
 
 
 
-## Table运行机制
+## <span id = "Table运行机制">Table运行机制</span>
 
 **note:** 
 

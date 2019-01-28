@@ -1,10 +1,10 @@
-# Free
+# <span id = "Free">Free</span>
 
 Free是不需要任何依赖就可以独立运行的插件，我们可以在里面做任何事，如创建图像，下载在线资源等。
 
 
 
-## 创建图像
+## <span id = "创建图像">创建图像</span>
 
 ```python
 from imagepy.core.engine import Free
@@ -27,7 +27,7 @@ class NewImage(Free):
 
 
 
-## 关于对话框
+## <span id = "关于对话框">关于对话框</span>
 
 ```python
 from imagepy.core.engine import Free
@@ -44,7 +44,7 @@ class About(Free):
 
 
 
-## 退出软件
+## <span id = "退出软件">退出软件</span>
 
 ```python
 from imagepy.core.engine import Free
@@ -62,7 +62,7 @@ class Close(Free):
 
 
 
-## Free的运行机制
+## <span id = "Free的运行机制">Free的运行机制</span>
 
 Free相比其他插件是运行机制最简单的，因为Free不需要做任何的流程准备，run也只有通过交互得到的para一个参数，完全放权给开发者。
 
