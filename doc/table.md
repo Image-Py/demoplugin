@@ -24,6 +24,9 @@ class Score(Free):
 
 我们通过一个Free插件生成表格，表格是一个pandas.DataFrame对象，通过IPy.show_table(df, title)来展示。
 
+![14](http://idoc.imagepy.org/demoplugin/19.png)
+
+<div align=center>生成成绩单</div><br>
 
 
 ## <span id = "根据某科成绩排序">根据某科成绩排序</span>
@@ -43,6 +46,9 @@ class Sort(Table):
 
 这里用到了一种新的参数类型，field，这种参数类型其实是一个单选类型，但是不需要我们提供选项，会自动从当前表格的columns中获取。run中通过inplace参数直接改变DataFrame本身，一些操作无法修改本身，可以将结果return。
 
+![14](http://idoc.imagepy.org/demoplugin/20.png)
+
+<div align=center>排序</div><br>
 
 
 ## <span id = "绘制柱状图">绘制柱状图</span>
@@ -63,6 +69,9 @@ class Bar(Table):
 这里又遇到了一种参数类型，fields，这种参数类型其实是一个多选类型，但是不需要我们提供选项，会自动从当前表格的columns中获取。当表格从界面上被选中若干列，参数对话框里对应的项也会被默认勾上。我们用pandas自带的绘图函数，但值得一提的是，插件中加入了asyn = False，这个标识告诉ImagePy不要启用异步执行run，因为这个插件涉及了UI，必须在主线程进行。
 
 
+![14](http://idoc.imagepy.org/demoplugin/21.png)
+
+<div align=center>绘制柱状图</div><br>
 
 ## <span id = "Table运行机制">Table运行机制</span>
 

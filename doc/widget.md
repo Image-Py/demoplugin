@@ -36,14 +36,18 @@ class Plugin ( wx.Panel ):
 
 由于wxpython的内容本身比较多，如有必要自己编写widget，那么免不了对wxpython进行系统性学习，这里仅仅给出一个最简单的例子。
 
+![14](http://idoc.imagepy.org/demoplugin/27.png)
 
+<div align=center>widget</div><br>
 
 **widget的加载方式**
 
 1. 文件必须以_wgt.py结尾，类名必须叫Plugin，继承于wx.Panel（一个文件只能实现一个工具）
 2. 文件可以位于widgets目录下的一级子菜单内，启动时会按照层级加载到右侧组件栏。也可以位于menus或其子菜单下，当用户点击菜单时加载面板。
 
+![14](http://idoc.imagepy.org/demoplugin/26.png)
 
+<div align=center>Widget In ImagePy</div><br>
 
 ## <span id = "Tool的运行机制">Tool的运行机制</span>
 

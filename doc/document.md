@@ -16,6 +16,8 @@
 
 3. 使用 **Plugins > Manager** 下的各种 **Tree View**
 
-   
+![14](http://idoc.imagepy.org/demoplugin/31.png)
+
+<div align=center>Hello World</div><br>   
 
 doc下所有的markdown文件都会被解析并通过文件名关联给对应插件，所以这里并不强制要求文件组织方式，但我们强烈建议维护一个与插件目录一致的文档目录，这样方便管理和维护，如果有必要我们可以加入多的目录文件，添加对应的跳转，这样整个doc目录也可以在github上进行阅读。

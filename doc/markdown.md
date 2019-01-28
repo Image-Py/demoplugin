@@ -6,4 +6,6 @@ MarkDown是一种标记语言，简单易读，适合书写文档，ImagePy对Ma
 #  <span id = "Demo">Markdown Demo</span>
 This is a Mark Down Demo
 ```
+![14](http://idoc.imagepy.org/demoplugin/05.png)
 
+<div align=center>MarkDown Demo</div><br>

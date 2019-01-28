@@ -49,6 +49,9 @@ class Plugin(Tool):
 
 通过重载mouse_down, mouse_up, mouse_move方法，可以实现鼠标交互，这里我们实现一个最常见的画笔工具。鼠标按下时，标记status为True，在鼠标移动过程中进行绘图，并更新显示。
 
+![14](http://idoc.imagepy.org/demoplugin/24.png)
+
+<div align=center>画笔工具</div><br>
 
 
 **Tool的加载方式**
@@ -59,6 +62,9 @@ class Plugin(Tool):
 4. 单击即可选中，并作用与画布，如有配置参数，双击可进行设置
 
 
+![14](http://idoc.imagepy.org/demoplugin/25.png)
+
+<div align=center>Tool的加载</div><br>
 
 ## <span id = "Tool的运行机制">Tool的运行机制</span>
 

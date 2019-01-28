@@ -27,6 +27,10 @@ class Plugin(Free):
 
 这是一个最简单的插件，首先import Free, IPy. Free是一种插件类型，这种类型插件可以不依赖图像而运行，我们在run里面用IPy.alert弹出一个'Hello world, I am ImagePy!'的提示框。
 
+![14](http://idoc.imagepy.org/demoplugin/01.png)
+
+<div align=center>Hello World</div><br>
+
 **如何加载**
 
 我们将上面的脚本文件命名为 hello_plg.py，拷贝到ImagePy目录下的 **Imagepy > menus > Plugins** 目录下，重新启动ImagePy，点开Plugins菜单，就会看到我们的插件。一些加载原则如下：
@@ -54,6 +58,9 @@ class Plugin(Free):
 ```
 
 ImagePy框架实现了参数对话框生成机制，可以根据para，view来生成对应的交互，完成交互后，我们在run函数中可以通过para参数获取交互结果，我们在下一个例子中会更加详细的讲解各种类型的参数生成。
+![14](http://idoc.imagepy.org/demoplugin/02.png)
+
+<div align=center>Who Are You</div><br>
 
 ## <span id = "Questionnaire">Questionnaire</span>
 
@@ -89,6 +96,9 @@ class Plugin(Free):
 
 		IPy.alert('\r\n'.join(rst))
 ```
+![14](http://idoc.imagepy.org/demoplugin/03.png)
+
+<div align=center>Questionnaire</div><br>
 
 **label:** para类型：不需要参数, view用法：('lab', 'lab', 'what you want to show')
 
@@ -142,3 +152,7 @@ plgs = [HelloWorld, WhoAreYou, Questionnaire]
 1. menus目录或子目录下的plgs.py结尾的文件会被当作多插件解析
 2. 插件内的plgs列表会被依次解析
 3. plgs内可以加入'-'，会被解析为菜单分隔符
+
+![14](http://idoc.imagepy.org/demoplugin/04.png)
+
+<div align=center>插件解析</div><br>
