@@ -3,6 +3,9 @@
 Macros是一系列的命令记录按顺序执行，而Workflow是Macros和Markdown的混合，同样规定了处理流程，但并不会自动顺序执行，而是每一步可以由用户自己调整参数，甚至过程中可以添加或跳过一些流程，此外每个过程开发者可以设定提示信息。
 
 
+![14](http://idoc.imagepy.org/demoplugin/11.png)
+
+<div align=center>Workflow</div><br>
 
 **<span id = "硬币分割工作流">硬币分割工作流</span>**
 
@@ -30,7 +33,9 @@ save the measure result as a csv file.
 
 我们在之前的硬币分割宏基础上编写工作流，按照markdown规范，加上必要的注释和章节，后缀为wf，保存到menus或其子文件夹下，加载时会是一个横向的分块面板，分为不同的章节，从左到右依次点击即可。鼠标放在每个小节会显示相应提示信息，点击右上角，可以浏览全部过程。
 
+![14](http://idoc.imagepy.org/demoplugin/12.png)
 
+<div align=center>Workflow Demo</div><br>
 
 **<span id = "工作流编写及加载方式">工作流编写及加载方式</span>**
 

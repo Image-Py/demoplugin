@@ -48,6 +48,9 @@ class SetLUT(Simple):
 
 lookup table是一个255*3的色彩映射表，映射表并不改变像素，只改变图像的显示。可以通过ips.lut进行访问或设定。与之相关的还有一个ips.range，是一个二元tuple，设定图像像素的动态范围，对于8位图像，通常是0-255，但对于float类型，range的设定就非常有意义，事实上，在展示时，ImagePy先根据range将图像进行clip，并缩放到0-255，然后再套用索引表。
 
+![14](http://idoc.imagepy.org/demoplugin/15.png)
+
+<div align=center>SetLUT</div><br>
 
 
 ## <span id = "ROI">Inflate ROI</span>
@@ -68,6 +71,9 @@ class Inflate(Simple):
 ROI指明哪些区域是我们关心的，ImagePy中的ROI基于Shapely对象，我们可以对其进行操作，以上是对当前ROI进行扩张的例子。
 
 
+![14](http://idoc.imagepy.org/demoplugin/16.png)
+
+<div align=center>Inflate ROI</div><br>
 
 ## <span id = "Unit">Set Scale And Unit</span>
 
@@ -88,6 +94,9 @@ class Unit(Simple):
 默认情况ImagePy中的一切测量，分析结果以像素为单位，但我们可以通过ips.unit对其进行访问和设定。
 
 
+![14](http://idoc.imagepy.org/demoplugin/17.png)
+
+<div align=center>Set Scale And Unit</div><br>
 
 ## <span id = "Mark">Set Random Point Mark</span>
 
@@ -107,6 +116,9 @@ class Mark(Simple):
 
 mark是图像上的覆盖物，并不改变图像本身。ImagePy定义了一套几何数据结果用于绘制mark，这里简单介绍：
 
+![14](http://idoc.imagepy.org/demoplugin/18.png)
+
+<div align=center>Set Random Point Mark</div><br>
 
 
 **各种Mark类型及用法**

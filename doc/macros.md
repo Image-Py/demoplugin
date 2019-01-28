@@ -21,12 +21,17 @@ Invert>None
 
 以上是两条命令，点击后会依次执行Gaussian，Invert。
 
+![14](http://idoc.imagepy.org/demoplugin/08.png)
 
+<div align=center>Macros</div><br>
 
 1. 宏命令是 **插件名称>参数字典** 这种形式构成
 2. 如果没有参数用 **None** 占位
 3. 如果有参数的命令参数给 **None** ，ImagePy会弹出参数对话框进行交互。
 
+![14](http://idoc.imagepy.org/demoplugin/09.png)
+
+<div align=center>Gaussian And Invert</div><br>
 
 
 **<span id = "分割硬币">分割硬币</span>**
@@ -40,3 +45,6 @@ Geometry Analysis>{'con': '8-connect', 'center': True, 'area': True, 'l': True, 
 ```
 
 以上是一个硬币分割的流程录制成宏，点击后会自动执行硬币分割，预处理，区域过滤，区域分析，生成表格。（当然通常我们不会将图像打开也录制到宏）
+![14](http://idoc.imagepy.org/demoplugin/10.png)
+
+<div align=center>Coins Segment Macros</div><br>

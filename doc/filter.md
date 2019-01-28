@@ -19,6 +19,9 @@ class Invert(Filter):
 
 Invert插件，note指明插件支持任何类型，并且支持roi，支持撤销。我们在run里面返回处理后的结果。关于snap和img，img是当前图像，而如果当note中加入auto_snap标识，在run之前，框架会帮我们把img拷贝给snap，因为多数的滤波器需要一个buffer来卷积，此外撤销和roi支持也必须借助snap。
 
+![14](http://idoc.imagepy.org/demoplugin/13.png)
+
+<div align=center>Invert</div><br>
 
 
 ## <span id = "Gaussian">Gaussian</span>
@@ -39,6 +42,9 @@ class Gaussian(Filter):
 
 Gaussian插件，note指明支持任何类型，并且支持roi，支持撤销，并提供预览功能。para和view指明有一个浮点参数sigma，而run里，我们调用scipy.ndimage.gaussian_filter，对snap进行滤波，输出指向img，如果函数不带输出项，我们将处理结果return即可，框架会帮我们赋值给img。
 
+![14](http://idoc.imagepy.org/demoplugin/14.png)
+
+<div align=center>Gaussian</div><br>
 
 
 ## <span id = "Filter运行机制">Filter运行机制</span>

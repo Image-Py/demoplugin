@@ -25,6 +25,9 @@ class NewImage(Free):
 
 这里通过一个例子，创建一副新图像，同样我们可以通过para，view进行参数交互。
 
+![14](http://idoc.imagepy.org/demoplugin/22.png)
+
+<div align=center>New Image</div><br>
 
 
 ## <span id = "关于对话框">关于对话框</span>
@@ -42,6 +45,9 @@ class About(Free):
 
 早在Hello World时就接触过，这里用作关于对话框。
 
+![14](http://idoc.imagepy.org/demoplugin/23.png)
+
+<div align=center>ImagePy Alert</div><br>
 
 
 ## <span id = "退出软件">退出软件</span>
