@@ -4,7 +4,7 @@ Filter是最重要的一类插件，用于对二维图像进行滤波，也是�
 
 
 
-## <span id = "Invert">Invert</span>
+## Invert
 
 ```python
 from imagepy.core.engine import Filter
