@@ -1,10 +1,15 @@
 # Demo Plugin
 
 **Path:** https://github.com/Image-Py/demoplugin
+
 **Version:** 0.1
+
 **Author:** YXDragon
+
 **Email:** yxdragon@imagepy.org
+
 **Keyword:** demo, tutorial
+
 **Description:** a friendly develop tutorial.
 
 *这是一个ImagePy插件项目，里面覆盖了各类插件的编写方法和用法，并配有详细的文档，ImagePy的插件开发者可以以此为参考*
