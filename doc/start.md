@@ -24,8 +24,8 @@ from imagepy import IPy
 class Plugin(Free):
     title = 'Hello World'
 
-	def run(self, para=None):
-		IPy.alert('Hello World, I am ImagePy!')
+    def run(self, para=None):
+        IPy.alert('Hello World, I am ImagePy!')
 ```
 这是一个最简单的插件，首先`import Free, IPy`. `Free`是一种插件类型，这种类型插件可以不依赖图像而运行，我们在`run`里面用`IPy.alert`弹出一个'Hello world, I am ImagePy!'的提示框。
 
@@ -55,8 +55,8 @@ class Plugin(Free):
     view = [(str, 'name', 'name', 'please'),
             (int, 'age', (0,120), 0, 'age', 'years old')]
 
-	def run(self, para=None):
-	    IPy.alert('Name:\t%s\r\nAge:\t%d'%(para['name'], para['age']))
+    def run(self, para=None):
+        IPy.alert('Name:\t%s\r\nAge:\t%d'%(para['name'], para['age']))
 ```
 
 ImagePy框架实现了参数对话框生成机制，可以根据`para`，`view`来生成对应的交互，完成交互后，我们在`run`函数中可以通过`para`参数获取交互结果，我们在下一个例子中会更加详细的讲解各种类型的参数生成。
@@ -73,32 +73,32 @@ from imagepy.core.engine import Free
 from imagepy import IPy
 
 class Plugin(Free):
-	title = 'Questionnaire'
+    title = 'Questionnaire'
 
-	para = {'name':'yxdragon', 'age':10, 'h':1.72, 'w':70, 'sport':True, 'sys':'Mac', 'lan':['C/C++', 'Python'], 'c':(255,0,0)} 
+    para = {'name':'yxdragon', 'age':10, 'h':1.72, 'w':70, 'sport':True, 'sys':'Mac', 'lan':['C/C++', 'Python'], 'c':(255,0,0)} 
 
-	view = [('lab', 'lab', 'This is a questionnaire'),
-			(str, 'name', 'name', 'please'), 
-			(int, 'age', (0,150), 0, 'age', 'years old'),
-			(float, 'h', (0.3, 2.5), 2, 'height', 'm'),
-			('slide', 'w', (1, 150), 0, 'kg'),
-			(bool, 'sport', 'do you like sport'),
-			(list, 'sys', ['Windows','Mac','Linux'], str, 'favourite', 'system'),
-			('chos', 'lan', ['C/C++','Java','Python'], 'lanuage you like(multi)'),
-			('color', 'c', 'which', 'you like')]
-    
-	def run(self, para=None):
-		rst = ['Questionnaire Result', 
-			'Name:%s'%para['name'], 
-			'Age:%s'%para['age'],
-			'Height:%sm'%para['h'], 
-			'Weight:%skg'%para['w'], 
-			'Like Sport:%s'%para['sport'],
-			'Favourite System:%s'%para['sys'],
-			'Like lanuage:%s'%para['lan'],
-			'Favourite Color:%s'%str(para['c'])]
+    view = [('lab', 'lab', 'This is a questionnaire'),
+            (str, 'name', 'name', 'please'), 
+            (int, 'age', (0,150), 0, 'age', 'years old'),
+            (float, 'h', (0.3, 2.5), 2, 'height', 'm'),
+            ('slide', 'w', (1, 150), 0, 'kg'),
+            (bool, 'sport', 'do you like sport'),
+            (list, 'sys', ['Windows','Mac','Linux'], str, 'favourite', 'system'),
+            ('chos', 'lan', ['C/C++','Java','Python'], 'lanuage you like(multi)'),
+            ('color', 'c', 'which', 'you like')]
 
-		IPy.alert('\r\n'.join(rst))
+    def run(self, para=None):
+        rst = ['Questionnaire Result', 
+            'Name:%s'%para['name'], 
+            'Age:%s'%para['age'],
+            'Height:%sm'%para['h'], 
+            'Weight:%skg'%para['w'], 
+            'Like Sport:%s'%para['sport'],
+            'Favourite System:%s'%para['sys'],
+            'Like lanuage:%s'%para['lan'],
+            'Favourite Color:%s'%str(para['c'])]
+
+        IPy.alert('\r\n'.join(rst))
 ```
 这里我们实现一个调查问卷，让用户输入各类信息，同时也是为了向开发者展示，如何通过`para`，`view`来说配置出任何自己想要的参数对话框。
 

@@ -11,27 +11,27 @@ from imagepy import IPy
 import wx
 
 class Plugin ( wx.Panel ):
-	title = 'Widget Demo'
-	def __init__( self, parent ):
-		wx.Panel.__init__ ( self, parent)
-		sizer = wx.BoxSizer( wx.VERTICAL )
-		self.lable = wx.StaticText( self, wx.ID_ANY, 'This is a widgets demo')
-		self.lable.Wrap( -1 )
-		sizer.Add( self.lable, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
-		self.btn_invert = wx.Button( self, wx.ID_ANY, 'Invert curent image')
-		sizer.Add( self.btn_invert, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
-		
-		self.SetSizer( sizer )
-		self.Layout()
-		self.Fit()
-		# Connect Events
-		self.btn_invert.Bind( wx.EVT_BUTTON, self.on_invert)
+    title = 'Widget Demo'
+    def __init__( self, parent ):
+        wx.Panel.__init__ ( self, parent)
+        sizer = wx.BoxSizer( wx.VERTICAL )
+        self.lable = wx.StaticText( self, wx.ID_ANY, 'This is a widgets demo')
+        self.lable.Wrap( -1 )
+        sizer.Add( self.lable, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+        self.btn_invert = wx.Button( self, wx.ID_ANY, 'Invert curent image')
+        sizer.Add( self.btn_invert, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+        
+        self.SetSizer( sizer )
+        self.Layout()
+        self.Fit()
+        # Connect Events
+        self.btn_invert.Bind( wx.EVT_BUTTON, self.on_invert)
 
-	def on_invert(self, event):
-		ips = IPy.get_ips()
-		if ips is None: return
-		ips.img[:] = 255-ips.img
-		ips.update()
+    def on_invert(self, event):
+        ips = IPy.get_ips()
+        if ips is None: return
+        ips.img[:] = 255-ips.img
+        ips.update()
 ```
 
 由于`wxpython`的内容本身比较多，如有必要自己编写`widget`，那么免不了对`wxpython`进行系统性学习，这里仅仅给出一个最简单的例子。

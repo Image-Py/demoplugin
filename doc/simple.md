@@ -11,14 +11,14 @@ from imagepy.core.engine import Simple
 import scipy.ndimage as ndimg
 
 class Gaussian3D(Simple):
-	title = 'Gaussian 3D Demo'
-	note = ['all', 'stack3d']
+    title = 'Gaussian 3D Demo'
+    note = ['all', 'stack3d']
 
-	para = {'sigma':2}
-	view = [(float, 'sigma', (0,30), 1,  'sigma', 'pix')]
+    para = {'sigma':2}
+    view = [(float, 'sigma', (0,30), 1,  'sigma', 'pix')]
 
-	def run(self, ips, imgs, para = None):
-		imgs[:] = ndimg.gaussian_filter(imgs, para['sigma'])
+    def run(self, ips, imgs, para = None):
+        imgs[:] = ndimg.gaussian_filter(imgs, para['sigma'])
 ```
 
 `note`里的`stack3d`标识是指插件处理一个连续的图像栈，而`run`函数里，可以通过`imgs`拿到图像序列，是一个`ndarray`对象，我们对其进行三维高斯滤波，结果重新赋值给`imgs`。
@@ -36,14 +36,14 @@ from imagepy.core.engine import Simple
 import numpy as np
 
 class SetLUT(Simple):
-	title = 'Set LUT Demo'
-	note = ['all']
-	para = {'lut':'red'}
-	view = [(list, 'lut', ['red', 'green', 'blue'], str, 'look up', 'table')]
+    title = 'Set LUT Demo'
+    note = ['all']
+    para = {'lut':'red'}
+    view = [(list, 'lut', ['red', 'green', 'blue'], str, 'look up', 'table')]
 
-	def run(self, ips, imgs, para = None):
-		cmap = [[i==para['lut']] for i in ['red', 'green', 'blue']]
-		ips.lut = (cmap*np.arange(256)).astype(np.uint8).T
+    def run(self, ips, imgs, para = None):
+        cmap = [[i==para['lut']] for i in ['red', 'green', 'blue']]
+        ips.lut = (cmap*np.arange(256)).astype(np.uint8).T
 ```
 
 lookup table是一个255*3的色彩映射表，映射表并不改变像素，只改变图像的显示。可以通过ips.lut进行访问或设定。与之相关的还有一个ips.range，是一个二元tuple，设定图像像素的动态范围，对于8位图像，通常是0-255，但对于float类型，range的设定就非常有意义，事实上，在展示时，ImagePy先根据range将图像进行clip，并缩放到0-255，然后再套用索引表。
@@ -59,13 +59,13 @@ lookup table是一个255*3的色彩映射表，映射表并不改变像素，只
 from imagepy.core.engine import Simple
 
 class Inflate(Simple):
-	title = 'Inflate ROI Demo'
-	note = ['all', 'req_roi']
-	para = {'r':5}
-	view = [(int, 'r', (1,100),0, 'radius', 'pix')]
+    title = 'Inflate ROI Demo'
+    note = ['all', 'req_roi']
+    para = {'r':5}
+    view = [(int, 'r', (1,100),0, 'radius', 'pix')]
 
-	def run(self, ips, imgs, para = None):
-		ips.roi = ips.roi.buffer(para['r'])
+    def run(self, ips, imgs, para = None):
+        ips.roi = ips.roi.buffer(para['r'])
 ```
 
 `ROI`指明哪些区域是我们关心的，ImagePy中的`ROI`基于`Shapely`对象，我们可以对其进行操作，以上是对当前`ROI`进行扩张的例子。
@@ -81,14 +81,14 @@ class Inflate(Simple):
 from imagepy.core.engine import Simple
 
 class Unit(Simple):
-	title = 'Scale And Unit Demo'
-	note = ['all']
-	para = {'scale':1, 'unit':'mm'}
-	view = [(float, 'scale', (1e-3,1e3), 3, 'scale', ''),
-			(str, 'unit', 'scale', '')]
+    title = 'Scale And Unit Demo'
+    note = ['all']
+    para = {'scale':1, 'unit':'mm'}
+    view = [(float, 'scale', (1e-3,1e3), 3, 'scale', ''),
+            (str, 'unit', 'scale', '')]
 
-	def run(self, ips, imgs, para = None):
-		ips.unit = (para['scale'], para['unit'])
+    def run(self, ips, imgs, para = None):
+        ips.unit = (para['scale'], para['unit'])
 ```
 
 默认情况ImagePy中的一切测量，分析结果以像素为单位，但我们可以通过`ips.unit`对其进行访问和设定。
@@ -106,12 +106,12 @@ from imagepy.core.mark import GeometryMark
 import numpy as np
 
 class Mark(Simple):
-	title = 'Random Points Demo'
-	note = ['all']
+    title = 'Random Points Demo'
+    note = ['all']
 
-	def run(self, ips, imgs, para = None):
-		pts = (np.random.rand(200)*512).reshape((100,2))
-		ips.mark = GeometryMark({'type':'points', 'color':(255,0,0), 'lw':1, 'body':pts})
+    def run(self, ips, imgs, para = None):
+        pts = (np.random.rand(200)*512).reshape((100,2))
+        ips.mark = GeometryMark({'type':'points', 'color':(255,0,0), 'lw':1, 'body':pts})
 ```
 
 `mark`是图像上的覆盖物，并不改变图像本身。ImagePy定义了一套几何数据结果用于绘制`mark`，这里简单介绍：
