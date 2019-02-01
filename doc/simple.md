@@ -1,10 +1,10 @@
-# <span id = "Simple">Simple</span>
+# Simple
 
 Simple是Filter之外的又一个比较重要的插件，不同的是Simple不着重处理单张图像，而是把图像序列当作整体进行三维处理，此外也用于操作图像之外的相关属性，如ROI, 色彩索引表，比例尺及单位，或图像Mark。
 
 
 
-## <span id = "Gaussian3D">Gaussian3D</span>
+## Gaussian3D
 
 ```python
 from imagepy.core.engine import Simple
@@ -21,15 +21,15 @@ class Gaussian3D(Simple):
 		imgs[:] = ndimg.gaussian_filter(imgs, para['sigma'])
 ```
 
-note里的stack3d标识是指插件处理一个连续的图像栈，而run函数里，可以通过imgs拿到图像序列，我们对其进行三维高斯滤波，结果重新赋值给imgs。
+`note`里的`stack3d`标识是指插件处理一个连续的图像栈，而`run`函数里，可以通过`imgs`拿到图像序列，是一个`ndarray`对象，我们对其进行三维高斯滤波，结果重新赋值给`imgs`。
 
-ImagePy里图像序列分stack2d，stack3d，其中stack2d是基于list的图像序列，便于增加，删除slice。而stack3d是一个连续的numpy数组，便于三维滤波，分析。我们可以通过 **Image > Type > Trans to stack/list** 进行转换。
+ImagePy里图像序列分`stack2d`，`stack3d`，其中`stack2d`是基于`list`的图像序列，便于增加，删除`slice`。而`stack3d`是一个连续的`numpy`数组，便于三维滤波，分析。我们可以通过 **`Image > Type > Trans to stack/list`** 进行转换。
 
-注意：基于Filter的二维高斯滤波也会处理序列，但处理方式是当成多个二维图像处理，而基于Simple的三维高斯滤波，则是在z方向也进行了卷积。
+*基于Filter的二维高斯滤波也会处理序列，但处理方式是当成多个二维图像处理，而基于Simple的三维高斯滤波，则是在z方向也进行了卷积。*
 
 
 
-## <span id = "SetLUT">SetLUT</span>
+## SetLUT
 
 ```python
 from imagepy.core.engine import Simple
@@ -53,7 +53,7 @@ lookup table是一个255*3的色彩映射表，映射表并不改变像素，只
 <div align=center>SetLUT</div><br>
 
 
-## <span id = "ROI">Inflate ROI</span>
+## Inflate ROI
 
 ```python
 from imagepy.core.engine import Simple
@@ -68,14 +68,14 @@ class Inflate(Simple):
 		ips.roi = ips.roi.buffer(para['r'])
 ```
 
-ROI指明哪些区域是我们关心的，ImagePy中的ROI基于Shapely对象，我们可以对其进行操作，以上是对当前ROI进行扩张的例子。
+`ROI`指明哪些区域是我们关心的，ImagePy中的`ROI`基于`Shapely`对象，我们可以对其进行操作，以上是对当前`ROI`进行扩张的例子。
 
 
 ![14](http://idoc.imagepy.org/demoplugin/16.png)
 
 <div align=center>Inflate ROI</div><br>
 
-## <span id = "Unit">Set Scale And Unit</span>
+## Set Scale And Unit
 
 ```python
 from imagepy.core.engine import Simple
@@ -91,14 +91,14 @@ class Unit(Simple):
 		ips.unit = (para['scale'], para['unit'])
 ```
 
-默认情况ImagePy中的一切测量，分析结果以像素为单位，但我们可以通过ips.unit对其进行访问和设定。
+默认情况ImagePy中的一切测量，分析结果以像素为单位，但我们可以通过`ips.unit`对其进行访问和设定。
 
 
 ![14](http://idoc.imagepy.org/demoplugin/17.png)
 
 <div align=center>Set Scale And Unit</div><br>
 
-## <span id = "Mark">Set Random Point Mark</span>
+## Mark
 
 ```python
 from imagepy.core.engine import Simple
@@ -114,7 +114,7 @@ class Mark(Simple):
 		ips.mark = GeometryMark({'type':'points', 'color':(255,0,0), 'lw':1, 'body':pts})
 ```
 
-mark是图像上的覆盖物，并不改变图像本身。ImagePy定义了一套几何数据结果用于绘制mark，这里简单介绍：
+`mark`是图像上的覆盖物，并不改变图像本身。ImagePy定义了一套几何数据结果用于绘制`mark`，这里简单介绍：
 
 ![14](http://idoc.imagepy.org/demoplugin/18.png)
 
@@ -123,37 +123,88 @@ mark是图像上的覆盖物，并不改变图像本身。ImagePy定义了一套
 
 **各种Mark类型及用法**
 
-**point:** {'type':'point', 'color':(r,g,b), 'lw':1, 'body':(x,y)}
+**point:**
 
-**points:** {'type':'points', 'color':(r,g,b), 'lw':1, 'body':[(x1,y1), (x2,y2), ...]}
+```python
+{'type':'point', 'color':(r,g,b), 'lw':1, 'body':(x,y)}
+```
 
-**line:** {'type':'line', 'color':(r,g,b), 'lw':1, 'style':'-', 'body':[(x1,y1), (x2,y2), ...]}
+**points:** 
 
-**lines:** {'type':'lines', 'color':(r,g,b), 'lw':1, 'style':'-', 'body':[[(x1,y1), (x2,y2), ...], [...]]}
+```python
+{'type':'points', 'color':(r,g,b), 'lw':1, 'body':[(x1,y1), (x2,y2), ...]}
+```
 
-**polygon:** {'type':'polygon', 'color':(r,g,b), 'fcolor':(r,g,b), 'lw':1, 'style':'o', 'body':[(x1,y1), (x2,y2), ...]}
+**line:** 
+```python
+{'type':'line', 'color':(r,g,b), 'lw':1, 'style':'-', 'body':[(x1,y1), (x2,y2), ...]}
+```
 
-**polygons:** {'type':'polygons', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'lw':1, 'style':'o', 'body':[[(x1,y1), (x2,y2), ...], [...]]}
-**circle:** {'type':'circle', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':(x,y,r)}
+**lines:** 
+```python
+{'type':'lines', 'color':(r,g,b), 'lw':1, 'style':'-', 'body':[[(x1,y1), (x2,y2), ...], [...]]}
+```
 
-**circles:** {'type':'circles', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':[(x1,y1,r1), (x2,y2,r2)]}
+**polygon:** 
+```python
+{'type':'polygon', 'color':(r,g,b), 'fcolor':(r,g,b), 'lw':1, 'style':'o', 'body':[(x1,y1), (x2,y2), ...]}
+```
 
-**ellipse:** {'type':'ellipse', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':(x,y,l1,l2,ori)}
+**polygons:** 
+```python
+{'type':'polygons', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'lw':1, 'style':'o', 'body':[[(x1,y1), (x2,y2), ...], [...]]}
+```
 
-**ellipses:** {'type':'ellipses', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':[(x1,y1,a1,b1,ori1), (x2,y2,a2,b2,ori2), ...]}
-**rectangle:** {'type':'rectangle', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':True, 'body':(x,y,w,h)}
+**circle:** 
+```python
+{'type':'circle', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':(x,y,r)}
+```
 
-**rectangles:** {'type':'rectangles', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':[(x1,y1,w1,h1),(x2,y2,w2,h2),...]}
+**circles:** 
+```python
+{'type':'circles', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':[(x1,y1,r1), (x2,y2,r2)]}
+```
 
-**text:** {'type':'text', 'color':(r,g,b), 'fcolor':(r,g,b), 'size':8, 'pt':True, 'body':(x,y,txt)}
+**ellipse:**
+```python
+{'type':'ellipse', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':(x,y,l1,l2,ori)}
+```
 
-**texts:** {'type':'texts', 'color':(r,g,b), 'fcolor':(r,g,b), 'size':8, 'pt':True, 'body':[(x1,y1,txt1),(x2,y2,txt2)]}
+**ellipses:**
+```python
+{'type':'ellipses', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':[(x1,y1,a1,b1,ori1), (x2,y2,a2,b2,ori2), ...]}
+```
+**rectangle:** 
+```python
+{'type':'rectangle', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':True, 'body':(x,y,w,h)}
+```
+
+**rectangles:**
+```python
+{'type':'rectangles', 'color':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':[(x1,y1,w1,h1),(x2,y2,w2,h2),...]}
+```
+
+**text:**
+```python
+{'type':'text', 'color':(r,g,b), 'fcolor':(r,g,b), 'size':8, 'pt':True, 'body':(x,y,txt)}
+```
+
+**texts:**
+```python
+{'type':'texts', 'color':(r,g,b), 'fcolor':(r,g,b), 'size':8, 'pt':True, 'body':[(x1,y1,txt1),(x2,y2,txt2)]}
+```
 
 ---
 
-**layer:** {'type':'layer', 'num':-1, 'clolor':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':[sequence of basic element]}
-		
-**layers:** {'type':'layers', 'num':-1, 'clolor':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':{1:layer1, 2:layer2, ...}}
+**layer:** 
+```python
+{'type':'layer', 'num':-1, 'clolor':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':[sequence of basic element]}
+```
+
+**layers:**
+```python
+{'type':'layers', 'num':-1, 'clolor':(r,g,b), 'fcolor':(r,g,b), 'fill':False, 'body':{1:layer1, 2:layer2, ...}}
+```
 
 
 
@@ -179,43 +230,41 @@ mark是图像上的覆盖物，并不改变图像本身。ImagePy定义了一套
 
 **要素集合**
 
-**layer:** layer可以指定color, fcolor, fill, 不同的是，layer的body存放的是其他基础要素，其实以上各种要素，除了type，body其他的属性都是非必须的，如果当前要素没有指定，则会取自其所属的layer，如果没有所属layer，或layer也未指定，则会使用默认。
+**layer:** `layer`可以指定`color`, `fcolor`, `fill`, 不同的是，`layer`的`body`存放的是其他基础要素，其实以上各种要素，除了`type`，`body`其他的属性都是非必须的，如果当前要素没有指定，则会取自其所属的`layer`，如果没有所属`layer`，或`layer`也未指定，则会使用默认。
+
+**layers:** `layers`是更高级的要素集合，与`layer`不同的是，`layers`的`body`是一个字典，其键是一个表示层数的int，而且在图像序列中，只绘制层号所对应的`layer`，这样可以实现对图像序列的每一张设定一个对应的`mark`。
 
 
 
-**layers:** layers是更高级的要素集合，与layer不同的是，layers的body是一个字典，而且在图像序列中，只绘制层号所对应的layer，这样可以实现对图像序列的每一张设定一个对应的mark。
-
-
-
-## <span id = "Simple运行机制">Simple运行机制</span>
+## Simple 运行机制
 
 **note:** 
 
-note选项是行为控制标识，用于控制插件执行的流程，比如让框架进行类型兼容检测，如不满足自动中止。设定通道和序列支持设定，以及是否需要提供预览，roi等支持。
+`note`选项是行为控制标识，用于控制插件执行的流程，比如让框架进行类型兼容检测，如不满足自动中止。设定通道和序列支持设定，以及是否需要提供预览，roi等支持。
 
-1. all：插件支持任意类型
+1. `all`：插件支持任意类型
 
-2. 8-bit：插件支持无符号8位
+2. `8-bit`：插件支持无符号8位
 
-3. 16-bit：插件支持无符号16位
+3. `16-bit`：插件支持无符号16位
 
-4. int：插件支持32位，64位整数
+4. `int`：插件支持32位，64位整数
 
-5. rgb：插件支持3通道24位彩色
+5. `rgb`：插件支持3通道24位彩色
 
-6. float：插件支持32位，64位浮点
+6. `float`：插件支持32位，64位浮点
 
-   ------
+   ---
 
-7. req_roi：是否必须有roi才能够处理
+7. `req_roi`：是否必须有roi才能够处理
 
-8. stack：要求必须是图像序列
+8. `stack`：要求必须是图像序列
 
-9. stack2d：要求必须是离散图像序列(list)
+9. `stack2d`：要求必须是离散图像序列(list)
 
-10. stack3d：要求必须是连续图像序列(ndarray)
+10. `stack3d`：要求必须是连续图像序列(ndarray)
 
-11. preview：是否显示预览选项
+11. `preview`：是否显示预览选项
 
 **para, view:** 
 
@@ -223,13 +272,13 @@ note选项是行为控制标识，用于控制插件执行的流程，比如让�
 
 **run:** 
 
-1. ips：图像封装类，我们可以通过ips对roi, mark, lut, range, unit等进行操作
-2. imgs：图像序列，对其进行操作，如三维滤波，或分析，可以以表格形式展示结果。
+1. `ips`：图像封装类，我们可以通过`ips`对`roi`, `mark`, `lut`, `range`, `unit`等进行操作
+2. `imgs`：图像序列，对其进行操作，如三维滤波，或分析，可以以表格形式展示结果。
 
 **load:** 
 
-def load(self, ips) 最先执行，如果return结果为False，插件将中止执行。默认返回True，如有必要，可以对其进行重载，进行一系列条件检验，如不满足，IPy.alert弹出提示，并返回False。
+`def load(self, ips)` 最先执行，如果`return`结果为`False`，插件将中止执行。默认返回`True`，如有必要，可以对其进行重载，进行一系列条件检验，如不满足，`IPy.alert` 弹出提示，并返回`False`。
 
 **preview:**
 
-def preview(self, ips, para) Simple虽然定义了preview，但默认是什么也不做的，因为对于三维滤波等操作，往往需要很长的运算时间，因而并不适合预览，如有需要可以重载。
+`def preview(self, ips, para)` Simple虽然定义了`preview`，但默认是什么也不做的，因为对于三维滤波等操作，往往需要很长的运算时间，因而并不适合预览，如有需要可以重载。

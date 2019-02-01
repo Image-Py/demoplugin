@@ -1,10 +1,10 @@
-# <span id = "Free">Free</span>
+# Free 插件
 
 Free是不需要任何依赖就可以独立运行的插件，我们可以在里面做任何事，如创建图像，下载在线资源等。
 
 
 
-## <span id = "创建图像">创建图像</span>
+## 创建图像
 
 ```python
 from imagepy.core.engine import Free
@@ -30,7 +30,7 @@ class NewImage(Free):
 <div align=center>New Image</div><br>
 
 
-## <span id = "关于对话框">关于对话框</span>
+## 关于对话框
 
 ```python
 from imagepy.core.engine import Free
@@ -50,7 +50,7 @@ class About(Free):
 <div align=center>ImagePy Alert</div><br>
 
 
-## <span id = "退出软件">退出软件</span>
+## 退出软件
 
 ```python
 from imagepy.core.engine import Free
@@ -64,13 +64,13 @@ class Close(Free):
         IPy.curapp.Close()
 ```
 
-退出软件是Free类型插件一个非常典型的应用，但值得一提的是，插件中加入了asyn = False，这个标识告诉ImagePy不要启用异步执行run，因为窗口关闭属于UI操作，必须在主线程进行。
+退出软件是Free类型插件一个非常典型的应用，但值得一提的是，插件中加入了`asyn = False`，这个标识告诉ImagePy不要启用异步执行`run`，因为窗口关闭属于`UI`操作，必须在主线程进行。
 
 
 
-## <span id = "Free的运行机制">Free的运行机制</span>
+## Free 的运行机制
 
-Free相比其他插件是运行机制最简单的，因为Free不需要做任何的流程准备，run也只有通过交互得到的para一个参数，完全放权给开发者。
+Free相比其他插件是运行机制最简单的，因为Free不需要做任何的流程准备，`run`也只有通过交互得到的`para`一个参数，完全放权给开发者。
 
 **para, view:** 
 
@@ -82,4 +82,5 @@ Free相比其他插件是运行机制最简单的，因为Free不需要做任何
 
 **load:** 
 
-def load(self, ips) 最先执行，如果return结果为False，插件将中止执行。默认返回True，如有必要，可以对其进行重载，进行一系列条件检验，如不满足，IPy.alert弹出提示，并返回False。
+`def load(self, ips)` 最先执行，如果`return`结果为`False`，插件将中止执行。默认返回`True`，如有必要，可以对其进行重载，进行一系列条件检验，如不满足，`IPy.alert`弹出提示，并返回`False`。
+

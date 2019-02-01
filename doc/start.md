@@ -1,4 +1,4 @@
-# 基础预备
+# 从这里开始
 
 这里我们用Hello World的例子来开始，顺带介绍插件的加载机制，以及如何配置参数对话框，为后续的开发做好准备。
 
@@ -6,7 +6,7 @@
 
 ##  什么是插件
 
-ImagePy是一个扩展性很强的图像处理框架，我们是通过插件来对ImagePy进行功能扩展的，插件是一段代码或一个文件，放在特定的位置，在ImagePy启动时自动加载，其具体形式可以体现为菜单，工具栏，桌面小部件。其实在ImagePy中一切功能皆插件，ImagePy原生功能并不享受任何特权，这些插件根据目录层级解析成对应UI元素，并在点击时触发相应功能，我们可以使用 `Plugins > Manager > Plugin Tree View` 来查看插件及其对应的源码。
+ImagePy是一个扩展性很强的图像处理框架，我们是通过插件来对ImagePy进行功能扩展的，插件是一段代码或一个文件，放在特定的位置，在ImagePy启动时自动加载，其具体形式可以体现为菜单，工具栏，桌面小部件。其实在ImagePy中一切功能皆插件，ImagePy原生功能并不享受任何特权，这些插件根据目录层级解析成对应UI元素，并在点击时触发相应功能，我们可以使用**`Plugins > Manager > Plugin Tree View`**来查看插件及其对应的源码。
 
 ![31](http://idoc.imagepy.org/demoplugin/31.png)
 <div align=center>Plugins Tree View</div><br>
@@ -22,7 +22,7 @@ from imagepy.core.engine import Free
 from imagepy import IPy
 
 class Plugin(Free):
-	title = 'Hello World'
+    title = 'Hello World'
 
 	def run(self, para=None):
 		IPy.alert('Hello World, I am ImagePy!')
@@ -50,9 +50,9 @@ from imagepy.core.engine import Free
 from imagepy import IPy
 
 class Plugin(Free):
-	title = 'Who Are You'
-	para = {'name':'', 'age':0}
-	view = [(str, 'name', 'name', 'please'),
+    title = 'Who Are You'
+    para = {'name':'', 'age':0}
+    view = [(str, 'name', 'name', 'please'),
             (int, 'age', (0,120), 0, 'age', 'years old')]
 
 	def run(self, para=None):
@@ -156,7 +156,7 @@ plgs = [HelloWorld, WhoAreYou, Questionnaire]
 
 1. `menus`目录或子目录下的`plgs.py`结尾的文件会被当作多插件解析
 2. 插件内的`plgs`列表会被依次解析
-3. plgs内可以加入`'-'`，会被解析为菜单分隔符
+3. `plgs`内可以加入`'-'`，会被解析为菜单分隔符
 
 ![14](http://idoc.imagepy.org/demoplugin/04.png)
 
