@@ -48,7 +48,13 @@ ImagePy菜单：`Plugins > Manager > Plugins Manager` 在输入框内输入demo�
 
 **[Workflow: 可交互的宏](doc/workflow.md)**
 
-1. [Coins Segment Workflow: 按照指引进行硬币分割](doc/workflow.md#硬币分割工作流)
+1. [Coins Segment Workflow：按照指引进行硬币分割](doc/workflow.md#硬币分割工作流)
+
+**[Report: 生成报表](doc/report.md)**
+
+1. [Personal Information：填写个人信息](doc/report.md#个人信息)
+2. [Coins Report：硬币分割成果](doc/report.md#硬币分割)
+3. [Report 插件的设计原则](doc/report.md#报表模板设计原则)
 
 **[Filter: 二维图像滤波器](doc/filter.md)**
 
