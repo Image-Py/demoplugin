@@ -1,4 +1,4 @@
-# Filter plug-in
+# Filter plugin
 [Filter](https://en.wikipedia.org/wiki/Filtering_problem_(stochastic_processes)) is one of the most important and basic applications in image processing. It utilizes the stochastic model to de-noise the two or three dimensional images.
 
 ## Invert
@@ -14,7 +14,7 @@ class Invert(Filter):
         return 255-snap
 ```
 
-**Invert plug-in**，`note` indicates that the plug-in supported types. It enables us to choose the ROI to deal with and to undo the operations. The results is return with the help of function `run`.</br>
+**Invert plugin**，`note` indicates that the plugin supported types. It enables us to choose the ROI to deal with and to undo the operations. The results is return with the help of function `run`.</br>
 About `snap` and `img`: </br>
 `img`is the opened image，if the `auto_snap` is  added in the `note`，owing to the need of `buffer` for the most of filters to convolve, before `run` acted，the framework will  copy the `img`to `snap`.  Besides, undo operation and ROI support must rely on `snap`.
 
@@ -40,7 +40,7 @@ class Gaussian(Filter):
         gaussian_filter(snap, para['sigma'], output=img)
 ```
 
-Gaussian plug-in，`note` indicates that the plug-in supported types，It enables us to choose the ROI to deal with and to undo the operations. It also provides the preview feature. `para` and `view` determine a float type  parameter `sigma`. In function `run`，the `scipy.ndimage.gaussian_filter` is called to filter the `snap`, and the output is directed to `img`. If there is no output in the function, the result can be assigned to `img` with the help with framework imagepy directly: with the `return xxx` at the end of the function.
+Gaussian plugin，`note` indicates that the plugin supported types，It enables us to choose the ROI to deal with and to undo the operations. It also provides the preview feature. `para` and `view` determine a float type  parameter `sigma`. In function `run`，the `scipy.ndimage.gaussian_filter` is called to filter the `snap`, and the output is directed to `img`. If there is no output in the function, the result can be assigned to `img` with the help with framework imagepy directly: with the `return xxx` at the end of the function.
 
 
 ![14](http://idoc.imagepy.org/demoplugin/14.png)
@@ -52,7 +52,7 @@ Gaussian plug-in，`note` indicates that the plug-in supported types，It enable
 ## Filter operating mechanism
 
 **note:** 
-`note` option is the behavior control identifier, to control the flow of plug-in execution. 
+`note` option is the behavior control identifier, to control the flow of plugin execution. 
 **i.e.:** Let the framework perform type compatibility detection, if not satisfied, it will be automatic ended. Set channel and sequence support settings. More : preview, ROI supports and other ones.
 
 1. `all`: Plugin supports all types.
