@@ -54,7 +54,7 @@ When executing report plug-in, ImagePy will firstly analyze Excel template, anal
 
 **Underlying parameter**
 
-`int,float,str,txt,bool`：these basic parameters, syntax format consistent take STR as an example, `{str Name = YX Dragon # please input your name here}`，where type and variable Name are required, default value and comment are optional. The difference between `str` and `txt` is that in the ImagePy interactive dialog, `txt` can receive multiple lines of text.
+`int,float,str,txt,bool`：these basic parameters, syntax format consistent take STR as an example, `{str Name = YX Dragon # please input your name here}`，where type and variable name are required, default value and comment are optional. The difference between `str` and `txt` is that in the ImagePy interactive dialog, `txt` can receive multiple lines of text.
 
 **Selection parameter**
 
@@ -62,7 +62,7 @@ When executing report plug-in, ImagePy will firstly analyze Excel template, anal
 
 **Image parameter**
 
-`img`：usage example `{img My_Photo = [4.8,4.8,0.9,0] # you photo here`，for img type, the default value must be provided, it is an brackets, inside four Numbers, respectively represents: length (cm), height (cm), white space ratio (0.9 represents 10% around), whether to stretch (0 represents holding ratio, 1 can be stretched), annotation is optional.
+`img`：usage example `{img My_Photo = [4.8,4.8,0.9,0] # you photo here`，for img type, the default value must be provided, it is an brackets, inside four numbers, respectively represents: length (cm), height (cm), white space ratio (0.9 represents 10% around), whether to stretch (0 represents holding ratio, 1 can be stretched), annotation is optional.
 
 **Table parameter**
 
