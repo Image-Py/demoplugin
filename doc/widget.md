@@ -1,10 +1,8 @@
-# Widget 插件
+# Widget Plugin
 
-Widget插件加载为一块面板，其实是继承与`wx.Panel`的一个ui对象，这给了我们非常大的自由空间，但代价是，我们无法隔绝`UI`，必须直接编写`wxpython`代码。例如右侧的导航栏，鹰眼就是`widget`扩展出的，而之前见到过的宏录制器同样也是`widget`。
+The Widget plugin is loaded as a panel, which is a actually a ui object that inherits from `wx.Panel`, this gives us a lot of free space, but at the cost of not being able to isolate the UI, we must write `wxpython` code directly. For example, the navigation bar on the right side, the eagle eye is extended by the `widget`, and the Macro recorder that I have seen before is also a `widget`.
 
-
-
-## 桌面组件演示
+## Desktop Component Demo
 
 ```python
 from imagepy import IPy
@@ -34,22 +32,21 @@ class Plugin ( wx.Panel ):
         ips.update()
 ```
 
-由于`wxpython`的内容本身比较多，如有必要自己编写`widget`，那么免不了对`wxpython`进行系统性学习，这里仅仅给出一个最简单的例子。
+Since `wxpython` has more content itself, if you need to write your own `widget`, you will inevitably learn systematically about `wxpython`. Here is just a simple example.
 
 ![14](http://idoc.imagepy.org/demoplugin/27.png)
 
 <div align=center>widget</div><br>
 
-**widget的加载方式**
+**widget loading method**
 
-1. 文件必须以`_wgt.py`结尾，类名必须叫`Plugin`，继承于`wx.Panel`（一个文件只能实现一个widget）
-2. 文件可以位于`widgets`目录下的一级子菜单内，启动时会按照层级加载到右侧组件栏。也可以位于menus或其子菜单下，当用户点击菜单时以浮动窗口形式加载面板。
+1. The file end with `_wgt.py`, the class name must be called `Plugin`, inherited from `wx.Panel`(one file can only implement one widget)
+2. The file can be located in the first level submenu under the `widgets` directory, and will be loaded into the right component bar according to the level when starting. It can also be located under menus or its submenus, which loads the panel as a floating window when the user clicks on the menu.
 
 ![14](http://idoc.imagepy.org/demoplugin/26.png)
 
 <div align=center>Widget Demo</div><br>
 
-## widget 的运行机制
+## widget Opterating Mechanism
 
-widgets本质上就是一个`wx.Panel`的子类，必须有`title`字段作为插件名称，其他的，就是`wxpython`编程，通过编写`UI`，添加事件实现，这里不做详细讨论。
-
+Widgets are essentially a subclass of `wx.Panel`. There must be a `title` field as the plugin name. Others are `wxpython` programming. By writing the `UI` and adding events, we don't discuss it in detail here.

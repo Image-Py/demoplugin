@@ -1,11 +1,9 @@
-# Workflow 插件
+# Workflow Plugin
 
-Macros是一系列的命令记录按顺序执行，而Workflow是Macros和Markdown的混合，同样规定了处理流程，但并不会自动顺序执行，而是每一步可以由用户自己调整参数，甚至过程中可以添加或跳过一些流程，此外每个过程开发者可以设定提示信息，宏是自动化流程，而工作流是向导作用，降低了自动化程度，但更具有指导作用。
-
-
+Macros is a series of command record executed in order, but Workflow is a mix of Macros and Markdown, the same preocess is specified, but Macros does not automatically execute, each step can be adjusted by the user, even some processes can be added or skipped during the process. In addition,  each process developer can set the prompt information, Macro is an automated process, but the Workflow is a guide, which reduces the degree of automation, but is more instructive.
 
 
-## 硬币分割工作流
+## Coin Split Workflow
 
 ```markdown
 Coins Segment Workflow Demo
@@ -33,18 +31,18 @@ save the measure result as a csv file.
 
 <div align=center>Workflow</div><br>
 
-我们在之前的硬币分割宏基础上编写工作流，按照markdown规范，加上必要的注释和章节，后缀为wf，保存到menus或其子文件夹下，加载时会是一个横向的分块面板，分为不同的章节，从左到右依次点击即可。鼠标放在每个小节会显示相应提示信息，点击右上角，可以浏览全部过程。
+Write a Workflow based on the previous Coin Split Macro, follow the markdown specification, add the necessary notes and chapters, suffix is wf, save to menus or its subfolders, it will be a horizontal block panel when loading, divided into different chapters, click from left to right. Mouse over each section will display the corresponding prompt information, click on the top right to view the entire process
 
 ![14](http://idoc.imagepy.org/demoplugin/12.png)
 
 <div align=center>Workflow Demo</div><br>
 
-**工作流编写及加载方式**
+**Workflow writing and loading**
 
-1. 工作流是一个markdown格式的文件，后缀为wf
-2. 前两行是主标题，解析成面板的主标题
-3. 二级标题代表章，是一个功能分块，解析为一个矩形面板
-4. 数字是要执行的命令，用数字序号开头，不带参数，解析为一个按钮
-5. 每个命令下面都可以添加一行注释，当用户鼠标移动到某个按钮上，会展示其对应的说明
-6. 可以拷贝到menus或其子菜单下，启动时被解析成菜单项
-7. 也可以拖拽到ImagePy最下方的状态栏加载工作流
+1. The workflow is a markdown file with the suffix wf
+2. The first two lines are the main title, parsed into the main title of the panel
+3. The seconda-level heading represents a chapter, which is a function block that resolves to a rectangular panel
+4. The number is the command to be executed, starting with a numeric serial number, without parameters, parsing into a button
+5. A line of comments can be added below each command. When the user mouse moves over a button, the corresponding description will be displayed
+6. Can be copied to menus or its submenus, parsed into menu items at startup
+7. You can also drag and drop to the status bar at the bottom of ImagePy to load the workflow
