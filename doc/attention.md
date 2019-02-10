@@ -1,61 +1,63 @@
-# 注意事项
-虽然细节未能详尽，但我们大致介绍了插件的开发，发布，文档编写。这里提出一些开发过程中的注意事项。
+# Matters Needing Attention
+Although the details are not exhaustive, we have introduced the development, release and documentation of plug-ins. Here are some considerations for the development process.
 
 
 
-## 用户友好性
+## User Friendliness
 
-如果是自己用则可以无需过多花费精力，但希望其他用户可以使用自己的插件，那么用户友好性是非常重要的，这包括：
+If it is for your own use, you don't need to spend too much energy.But you want other users to be able to use your own plug-ins, then user friendliness is very important, including:
 
-1. **合理的功能组织**
+1. **Reasonable functional organization**
 
-   将功能合理的划分，并用合适的标题展示。
+   Divide the functions reasonably and present them with appropriate titles.
 
-2. **合理的交互方式**
+2. **Reasonable interaction way**
 
-   如插件的参数暴露能具有一定通用性但又不至于杂乱，工具的使用方式符合使用习惯。
+   For example, the parameter design of the plug-in can have a certain degree of versatility but not messy, and the use of the tool is in line with the use habits.
 
-3. **言简意赅的文档**
+3. **A concise document**
 
-   如果有精力，最好为插件编写操作手册，有必要可以图文并茂。
+   If you have the energy, it is best to write a manual for the plug-in.It is necessary to be illustrated.
 
-4. **尽可能优化的性能体验**
+4. **Optimize the performance experience as much as possible**
 
-   当然这一点是永无止境的，并且主要取决于算法，固然越快越好，等待总是糟糕的。
-
-
-
-## 开发者友好性
-
-**ImagePy将开发者友好性放在与用户友好性等同的地位**，因为开发者与用户本是一个教学相长的群体，并且两者之间界线模糊，可以互相转化，这里介绍几个ImagePy的开发理念。
-
-1. **ImagePy不是算法库，只是连接器**
-
-   ImagePy不做算法，只提供必要的展示与交互，致力于让算法开发者用最少的代码将算法进行配置，整合到ImagePy，将算法转化为工具，给其他人甚至是非程序员使用。
-
-2. **尽可能隔离UI**
-
-   UI对于科研程序员总是不愉快的，ImagePy尽最大努力隔绝UI，多数的配置功能都可以通过`para`，`view`的配置来完成参数对话框的生成，而`tool`也抽象为`mouse_down`, `mouse_up`, `mouse_move`, `mouse_wheel`四个接口实现。而一些定制化很强的功能，不得不借助`widget`，只有这时才需要开发者自己编写UI相关的代码。
-
-3. **以算法本身为核心**
-
-   ImagePy的图像数据基于`Numpy`，表格数据基于`Pandas`，矢量数据基于`Shapely`，这些都是通用数据结构，相当于Python科学计算的标准，ImagePy作为算法连通器，固然只能支持，而不能干涉算法的编写。因而开发者*切不可将核心算法在`run`函数中实现*，这样其他开发者将无法使用，开源的意义就大打折扣。算法，UI，事件混合，这导致ImageJ1的算法代码无法被其他开发者调用，不得不大量使用`IJ.run(...)`，或许ImageJ2正在极力改变这种情况，而这在ImagePy中是不被允许的用法。我们推荐的方法是
-
-   1）如果你的插件只是实现很简单的数据操作，只有几行代码，那么OK，可以在run中实现。
-
-   2）如果你的算法相对复杂，那么最好将它写在一个单独的文件，并且这个模块中不要引用任何与ImagePy相关的模块，只基于`Numpy`，`Pandas`等标准科学计算库，这样以便他人可以拷贝出去，并且`import`使用。
-
-   3）如果你的算法意义重大，通用性很强，那么务必创建一个独立的算法项目，上传`pypi`，在插件项目中以引用的方式来使用。
-
-4. **关于宏和headless**
-
-   相比ImageJ，ImagePy的宏实现的功能非常有限，只支持已有功能流程化调用，无法用宏实现逻辑，这其实与ImagePy的设计理念紧密相关，只要开发者都能做到以算法本身为核心，让ImagePy充当纯粹的连接器，那么任何的算法调用，可以用Python简单的调用。*Python已经如此简单强大，为什么还要另外学习一种晦涩而不通用的宏呢*？同样，ImagePy也不会支持`headless`，因为一切功能以算法本身为核心，而ImagePy只提供交互，那么在headless情况下，ImagePy还有什么意义？又有什么非要借助ImagePy的呢？如果一切功能都可以以库的形式提供，那么开发者为什么希望编写`headless`代码，而不是纯粹的python代码？
+   Of course, this point is endless, and mainly depends on the algorithm. The sooner the better, waiting is always bad.
 
 
 
-## 及时沟通
+## Developer Friendliness
 
-相比ImageJ，ImagePy还只是一个孩子，框架和功能都还不够完善，但优势是，我们可以自由把控，即时调整，而不需要考虑背在身上的强大且庞大的插件体系。作为插件开发者，如果在插件开发过程中遇到任何困难，请随时与我们联系，尤其是当你觉得一个插件开发的很复杂时，那么很可能是因为我们的框架缺乏某方面的支持，我们可以随时讨论，在插件开发的同时，共同完善主框架。让ImagePy更好的实现连接器的价值，为用户和开发者服务。
+**ImagePy puts developer friendliness in the same position as user friendliness**，because developers and users are a group that can learn from each other, and the line between the two is blurred And they can be transformed into each other. Here are a few development concepts of ImagePy.
 
-ImagePy是 www.forum.image.sc 的合作伙伴，任何研发，使用方面的问题可以在里面进行讨论。
+1. **ImagePy is not an algorithm library, just a connector**
+
+   ImagePy does not reserch algorithms, but only provides necessary presentation and interaction. It is committed to enabling algorithm developers to configure algorithms with minimal code. You can integrate them into ImagePy, and turn algorithms into tools for others, even non-programmers.
+
+2. **** Isolate the UI as much as possible**
+
+   UI for scientific research or the programmer is always unpleasant, ImagePy try your best to isolate UI. Most configuration functions can all be ` para `, ` view ` configuration dialog box to complete the parameters generated, and ` tool ` is abstracted as ` mouse_down `, ` mouse_up `, ` mouse_move `, ` mouse_wheel ` four interface implementation. And some deeply customed  function have to use ` widget `, only this it requires developers to write your own UI code.
+
+
+3. **Takes the algorithm itself as the core**
+
+   Image data of ImagePy is based on ` Numpy `, tabular data based on ` Pandas `, vector data based on ` Shapely `, and these are universal data structures that are the equivalent of Python standard of scientific computing.As connectors, ImagePy is only support, and not interfere in writing of the algorithm. * so developers must not realize the core algorithm in ` run ` function implementation, because other developers will not be able to use them, which the meaning of open source will be discounted. Algorithm, UI, and hybrid events  result in ImageJ1 algorithm code difficultly invoked by other developers, who have to use ` IJ. Run (... ) `.Perhaps ImageJ2 is trying to change this situation.So this is not allowed in the ImagePy usage. 
+   The way we recommend：
+
+   1）if your plug-in only implements simple data manipulation with a few lines of code, OK, it can be implemented in ` run `.
+
+   2) If your algorithm is relatively complex, so it is best to write it in a separate file, and this module do not refer to any ImagePy related modules, which only based on ` Numpy `, ` Pandas ` standards such as scientific computing library. So that others can copy out, and ` import ` use.
+
+   3) if your algorithm is of great significance, versatility is very strong.Be sure to create a separate algorithm project, upload ` pypi `, and use it in the way of plug-in project.
+
+4. **About macros and headless**
+
+   Compared with ImageJ, ImagePy macro function is very limited.Only support the existing routing to call the function, and do not use macros implementation function.It is closely related to the design concept of ImagePy, as long as developers can use the algorithm itself .Let ImagePy act as pure connector, then you can use Python simple call any  algorithm. *Python is already so simple and powerful, why bother learning another obscure and non-generic macro? ImagePy have not support ` headless ` as well, because all the functions to the algorithm itself are the core, and ImagePy only provides interaction.So in the case of headless, what is the point of ImagePy ? What's the point of using ImagePy? If all functions can be provided in the form of libraries, why does developers want to write ` headless ` code rather than a pure python code?
+
+
+
+## Communicate Timely
+
+Compared with ImageJ, ImagePy is still a child, and its framework and functions are not perfect yet. However, the advantage is that we can control and adjust it in real time without considering the powerful and huge plug-in system on our backs. As a plugin developer, if you encounter any difficulties in the process of plug-in development, and please feel free to contact us.Especially when you feel a plug-in development very complex, it is possible that we lack of some aspect support of framework. We can discuss at any time on the plug-in development ,and at the same time,we improve the main frame together. Let ImagePy better realize the value of connector and serve users and developers.
+
+ImagePy is a partner of www.forum.image.sc, and any development, usage issues can be discussed here.
 
