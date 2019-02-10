@@ -1,9 +1,9 @@
-# matters needing attention
+# Matters Needing Attention
 Although the details are not exhaustive, we have introduced the development, release and documentation of plug-ins. Here are some considerations for the development process.
 
 
 
-## user friendliness
+## User Friendliness
 
 If it is for your own use, you don't need to spend too much energy.But you want other users to be able to use your own plug-ins, then user friendliness is very important, including:
 
@@ -25,7 +25,7 @@ If it is for your own use, you don't need to spend too much energy.But you want 
 
 
 
-## Developer friendliness
+## Developer Friendliness
 
 **ImagePy puts developer friendliness in the same position as user friendliness**，because developers and users are a group that can learn from each other, and the line between the two is blurred And they can be transformed into each other. Here are a few development concepts of ImagePy.
 
@@ -55,7 +55,7 @@ If it is for your own use, you don't need to spend too much energy.But you want 
 
 
 
-## Communicate timely
+## Communicate Timely
 
 Compared with ImageJ, ImagePy is still a child, and its framework and functions are not perfect yet. However, the advantage is that we can control and adjust it in real time without considering the powerful and huge plug-in system on our backs. As a plugin developer, if you encounter any difficulties in the process of plug-in development, and please feel free to contact us.Especially when you feel a plug-in development very complex, it is possible that we lack of some aspect support of framework. We can discuss at any time on the plug-in development ,and at the same time,we improve the main frame together. Let ImagePy better realize the value of connector and serve users and developers.
 
