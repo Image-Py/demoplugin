@@ -27,7 +27,7 @@ If it is for your own use, you don't need to spend too much energy.But you want 
 
 ## Developer friendliness
 
-**ImagePy将开发者友好性放在与用户友好性等同的地位**，because developers and users are a group that can learn from each other, and the line between the two is blurred And they can be transformed into each other. Here are a few development concepts of ImagePy.
+**ImagePy puts developer friendliness in the same position as user friendliness**，because developers and users are a group that can learn from each other, and the line between the two is blurred And they can be transformed into each other. Here are a few development concepts of ImagePy.
 
 1. **ImagePy is not an algorithm library, just a connector**
 
