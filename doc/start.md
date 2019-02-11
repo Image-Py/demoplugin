@@ -1,4 +1,4 @@
-# start here
+# Start Here
 
 We'll start with the Hello World example, which provides an introduction to the plug-in's loading mechanism and how to configure the parameters dialog for future development.
 
