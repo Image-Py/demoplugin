@@ -1,10 +1,10 @@
-# Table 插件
+# Table Plug-in
 
-表格是图像之外另一个非常重要的数据类型，某种意义上，科研图像分析的结果最终都会归到表格。ImagePy对表格类型数据有很好的支持，其核心数据结构是`pandas.DataFrame`。
+Table is another very important data type besides image. In a sense, the results of scientific image analysis will eventually be returned to table. ImagePy  have very good support to table type data ,whose core data structure is ` pandas.DataFrame `.
 
 
 
-## 生成成绩单
+## Generate transcripts
 
 ```python
 from imagepy.core.engine import Free
@@ -22,14 +22,14 @@ class Score(Free):
         IPy.show_table(pd.DataFrame(score, index, columns), 'Scores')
 ```
 
-我们通过一个`Free`插件生成表格，表格是一个`pandas.DataFrame`对象，通过`IPy.show_table(df, title)`来展示。
+We generated table through a ` Free ` plug-in. Table is a ` pandas. The DataFrame ` object, which is displayed by ` IPy. show_table(df, title)` .
 
 ![14](http://idoc.imagepy.org/demoplugin/19.png)
 
 <div align=center>generate score list</div><br>
 
 
-## 根据某科成绩排序
+## Sort by subject grade
 
 ```python
 from imagepy.core.engine import Table
@@ -44,14 +44,14 @@ class Sort(Table):
         tps.data.sort_values(by=para['by'], inplace=True)
 ```
 
-这里用到了一种新的参数类型，`field`，这种参数类型其实是一个单选类型，但是不需要我们提供选项，会自动从当前表格的`columns`中获取。`run`中通过`inplace`参数直接改变`DataFrame`本身，一些操作无法修改本身，可以将结果return。
+Here is the help of a new argument types, ` field `, and the parameter type is a radio type, which don't need us to provide options and get automatically from the current form of ` columns `. ` run `  directly change ` DataFrame ` itself by ` inplace ` parameters.Some operations can not modify itself, whose result can be return.
 
 ![14](http://idoc.imagepy.org/demoplugin/20.png)
 
 <div align=center>sort by math</div><br>
 
 
-## 绘制柱状图
+## Draw bar graph
 
 ```python
 class Bar(Table):
@@ -66,42 +66,42 @@ class Bar(Table):
         plt.show()
 ```
 
-这里又遇到了一种参数类型，`fields`，这种参数类型其实是一个多选类型，但是不需要我们提供选项，会自动从当前表格的`columns`中获取。当表格从界面上被选中若干列，参数对话框里对应的项也会被默认勾上。我们用pandas自带的绘图函数，但值得一提的是，插件中加入了`asyn = False`，这个标识告诉ImagePy不要启用异步执行`run`，因为这个插件涉及了`UI`，必须在主线程进行。
+Here is the help of a new argument types, ` fields `, and the parameter type is actually a multiple-choice type, which don't need us to provide options and get automatically from the current form of ` columns `.When the table is selected some columns in the interface, the corresponding items are also checked by default in the parameters dialog box. Pandas bring our own drawing functions, but it is worth mentioning that the plug-in joined ` asyn = False `, which tells ImagePy not to  enable asynchronous execution ` run `.Because this plug-in involved in ` UI `, and it must be conducted in the main thread.
 
 
 ![14](http://idoc.imagepy.org/demoplugin/21.png)
 
 <div align=center>bar chart</div><br>
 
-## Table 运行机制
+## Table operation mechanism
 
 **note:** 
 
-`note`选项是行为控制标识，用于控制插件执行的流程，比如让框架进行类型兼容检测，如不满足自动中止，与Filter和simple的note有所区别。
+` note ` option is behavior control indicators, which is used to control the plug-in implementation process.Such as allowing framework to be compatible with the types of tests,if not meet ,the automatic suspension will happen.And it is different from the Filter and simple ` note ` .
 
-1. `req_sel`：需要选区
-2. `req_row`：需要选中行
-3. `req_col`：需要选中列
-4. `auto_snap`：处理前框架自动对数据进行缓冲
-5. `row_msk`：snap时只缓冲选中的行
-6. `col_msk`：snap时只缓冲选中的列
-7. `num_only`：snap时只缓冲数值列
-8. `preview`：是否显示预览选项
+1. `req_sel`：It needs selection district
+2. `req_row`：It needs to select the row
+3. `req_col`：It needs to select the column
+4. `auto_snap`：The framework automatically buffers the data before processing
+5. `row_msk`：In snap , it only bufferS the selected rows
+6. `col_msk`：In snap , it only buffeSr the selected columns
+7. `num_only`：In snap , it only buffers only numeric value columns
+8. `preview`：Whether to display preview option
 
 **para, view:** 
 
-参数字典，具体用法参阅start入门。
+Parameter dictionary, see start for details.
 
 **run:** 
 
-1. `tps`：表格封装类，我们可以通过`tps`对`rowmsk`, `colmsk`等进行访问或操作
-2. `snap`：表格缓冲，如果有`auto_snap`标识，则可以生效。
-3. `data`：当前表格，对其进行操作。
+1. ` tps ` : table wrapper class.We can visit or operate ` rowmsk ` and  ` colmsk `  by ` tps ` 
+2. ` snap ` : the buffer of table.If there is a ` auto_snap ` logo, it can take effect.
+3. ` data ` : current table can be  operation.
 
 **load:** 
 
-`def load(self, tps)` 最先执行，如果`return`结果为`False`，插件将中止执行。默认返回`True`，如有必要，可以对其进行重载，进行一系列条件检验，如不满足，`IPy.alert`弹出提示，并返回`False`。
+` def load (self, tps) ` are executed first.If ` return ` results for ` False `, plug-in will suspend execution. The default return ` True `.If necessary, which can be overloaded to add a series of condition inspection. If not meet, ` IPy. alert ` pops up prompts, and returns the ` False `.
 
 **preview:**
 
-`def preview(self, tps, para)` ，默认情况下会自动执行`run`并更新，有需要可以重载。
+def preview (self, tps, para) ` will automatically perform ` run ` and update by default , which can be overloaded in need .
