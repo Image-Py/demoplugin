@@ -1,10 +1,10 @@
-# Tool 插件
+#  Tool Plug-in
 
-Tool插件用来完成鼠标交互，启动时被加载为工具栏上的图标。典型的工具插件是，roi编辑，画笔，测量工具等。
+The Tool plug-in is used to complete mouse interaction and is loaded as icons on the toolbar at startup. Typical tool plug-ins are ROI editing, brushes, measuring tools, etc.
 
 
 
-## <span id = "画笔工具">画笔工具</span>
+## <span id = "Brush Tool">Brush Tool</span>
 
 ```python
 from imagepy.core.engine import Tool
@@ -47,34 +47,34 @@ class Plugin(Tool):
     def mouse_wheel(self, ips, x, y, d, **key):pass
 ```
 
-通过重载`mouse_down`, `mouse_up`, `mouse_move`方法，可以实现鼠标交互，这里我们实现一个最常见的画笔工具。鼠标按下时，标记`status`为`True`，在鼠标移动过程中进行绘图，并更新显示。
+By overloading ` mouse_down `, ` mouse_up `, ` mouse_move ` method, we can realize the mouse interaction.Here ,we implement one of the most common brush tool. When the mouse is clicked, tag ` status` will be for  ` True ` with drawing in the process of the mouse movement, and updating the display.
 
 ![14](http://idoc.imagepy.org/demoplugin/24.png)
 
-<div align=center>画笔工具</div><br>
+<div align=center>Brush Tool</div><br>
 
 
-**Tool的加载方式**
+**Tool loading method**
 
-1. 文件必须以`_tol.py`结尾，类名必须叫`Plugin`（一个文件只能实现一个工具）
-2. 必须位于`tools`目录下的一级子菜单下
-3. 需要配有一个同名的，16*16的gif文件用于工具栏图标
-4. 单击即可选中，并作用与画布，如有配置参数，双击可进行设置
+1. The file must end up with ` _tol.py ` ,and the class name must be ` Plugin ` (A file can only achieve a tool)
+2. The file must be in ` tools ` submenu directory level 
+3. It is required for the toolbar icon to have a GIF file , 16*16, with the same name as `tool` 
+4. Click to select and apply to the canvas. If there are configuration parameters, you can click doublely to set them
 
 
 ![14](http://idoc.imagepy.org/demoplugin/25.png)
 
-<div align=center>Tool的加载</div><br>
+<div align=center>Tool loading</div><br>
 
-## Tool 的运行机制
+## Tool Running Mechanism
 
-**title:** 标题
+**title:** title
 
-**mouse_down:** `mouse_down(self, ips, x, y, btn, **key):` 鼠标按下时触发，`ips`是当前作用图像的`ImagePlus`封装类，可以通过`ips.img`获取当前图像，也可以`ips.lut`, `ips.roi`, `ips.unit`获取图像的索引表，roi，比例尺和单位等附加信息。x, y是当前鼠标在数据坐标系下的位置，`btn`触发事件的鼠标按键，0:无，1:左键，2:中键，3:右键。可以通过`key['alt']`, `key['ctrl']``, key['shift']`获取相应功能键是否按下，通过`key['canvas']`获取触发事件的`Canvas`对象。
+**mouse_down:** ` mouse_down (self, ips, x, y, btn * * key) : `Mouse pressed cause to the trigger.`  ips` is  ` ImagePlus ` wrapper class. We can get the current image by the` ips.img `. And we can sequencely get the unit, image indexing table, ROI and additional information on scale and unit corresponding by the ` ips. lut ` , the  ` ips. roi `, and the ` ips. unit `.The x, y is the current mouse position under the data coordinate system.The ` btn ` triggers the mouse button, such as : 0: no, 1: left, 2: the key, and 3: right. We can obtain if corresponding function key is pressed or not by the ` key [' Alt '] `, the ` key [' CTRL] ` ,and the `key [' shift '] `.And ` key [' canvas'] ` can get  ` canvas ` object of triggering event.
 
-**mouse_up:** `mouse_up(self, ips, x, y, btn, **key):` 鼠标抬起时触发，具体参数与`mouse_down`相同。
+**mouse_up:** ` mouse_up (self, ips, x, y, btn, * * key) : ` When release pressed mouse ,it cause to the trigger.Specific parameters are the same as  ` mouse_down `. 
 
-**mouse_move:** `mouse_move(self, ips, x, y, btn, **key):` 鼠标移动时触发，具体参数与`mouse_down`相同。
+**mouse_move:** ` mouse_up (self, ips, x, y, btn, * * key) : ` When mouse moves ,it cause to the trigger.Specific parameters are the same as  ` mouse_down `. 
 
-**mouse_wheel(self, ips, x, y, btn, ******key):** 鼠标滚轮滚动时触发，具体参数与`mouse_down`相同。
+**mouse_wheel:** ` mouse_up (self, ips, x, y, btn, * * key) : ` When  the mouse wheel rolls ,it cause to the trigger.Specific parameters are the same as  ` mouse_down `. 
 
