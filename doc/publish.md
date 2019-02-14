@@ -1,21 +1,21 @@
-# 插件项目发布
+# Plug-in Project Release
 
-以上我们讨论了每一种插件的写法，当然，我们可以任意在ImagePy的`menus`，`tools`，`widgets`下创建python脚本以扩展出某个插件功能，但当我们的插件越来越多，功能越来越系统，当然就会希望正式发布成一个插件项目，可以让其他用户方便的安装使用。这里我们讨论如何发布一个插件项目。
+We discussed each plug-in realizing above.Of course, we can create the python scripts to develop a plugin function  arbitrarily  in ` menus `, ` tools `, ` widgets ` of ImagePy  . But when our plugins are more and more,  function system is more and more complex, of course we will hope to launch into a plug-in project, which can let other users to installa conveniently . Here we discuss how to publish a plug-in project.
 
 
 
-## 功能组织
+## Function organization
 
-**功能划分**
+**Functional partitioning**
 
-如果我们的插件并不是一个单一的功能，而是系统性很强的一系列功能，那么我们应该将这些功能进行划分和聚类，用文件夹来进行组织。例如我们之前编写的全部功能，就可以按照插件类型来进行组织。
+If our plug-in is not a single function, but a set of very systematic functions.Then we should divide and cluster these functions and organize them with folders. For example, all the functionality we wrote earlier can be organized by plug-in type.
 
 ![14](http://idoc.imagepy.org/demoplugin/28.png)
 
-<div align=center>功能划分</div><br>
-**顺序设定**
+<div align=center>functional partitioning</div><br>
+**set sequence **
 
-我们看到，对插件进行了功能划分，看起来就更加清晰，然而插件是以字母顺序进行排序的，我们希望指定顺序，在ImagePy中这非常容易实现，我们在init.py文件中加入`catlog`字段，用一个列表对象指明顺序。
+We see that the functional division of plug-in is more clear, but the plugin is sorted in alphabetical order.We want to specify the order, and it is very easy to implement in ImagePy. We  add ` catlog ` fields to the ` init. py ` file, and indicate the order with a list of objects.
 
 `__init__.py`
 
@@ -23,33 +23,34 @@
 catlog = ['Start Here', '-', 'Markdown Demo', 'Macros Demo', 'Workflow Demo', '-', 'Filter Demo', 'Simple Demo', 'Table Demo', 'Free Demo', '-', 'WidgetDemo']
 ```
 
-一旦设定catlog，菜单将按照指定顺序加载，`'-'`被解析成分割线。`catlog`可以出现在任何插件目录下，即可以指定插件，也可以指定文件夹的顺序，对于tools也起作用（另一种设定顺序的方式是之前介绍的一个文件实现多个插件的`plgs`方式）。
+Once catlog set well, menu will be loaded in specified order, such as :` '-' ` parses to segment line. The ` catlog ` can appear in any plug-in directory, or you can specify plug-in, or you can also specify the order of the folder, or to play a role to the tools (the other way to set the order is  ` plgs ` way  to realize multiple plug-ins ,which is introducted before  ).
 
 ![14](http://idoc.imagepy.org/demoplugin/29.png)
 
 <div align=center>sort by catlog</div><br>
 
-`catlog`可以出现在任何插件目录下，即可以指定插件，也可以指定文件夹的顺序，对于`tools`也起作用。另外多插件的文件中通过`plgs`也可以指定插件的顺序。
+The ` catlog ` can appear in any plug-in directory, or  specify a plug-in, or specify the order of the folder, and also play a role to ` tools ` . The ` plgs ` can also specify the order of the plugin for multi plugin file.
 
 
 
-## 插件项目创建
+## Plugin project creation
 
-**创建插件项目仓库**
+**Create a plugin project repository**
 
-如果插件都分散在ImagePy主项目的文件夹下不便于管理，因而我们创建一个单独的插件项目仓库，在仓库的顶层创建`menus`，`tools`，`widgets`三个文件夹，里面存放经过功能划分和顺序设定的插件。
-
-
-
-**编写 requirements**
-
-Python最大的好处在于有丰富的库，作为一个插件项目，很可能会依赖其他的库，按照惯例，需要把依赖写入到`requirements.txt`中（ImagePy在安装插件时会自动调用pip解决依赖，暂时只支持pip，后续会考虑支持conda）
+If the plug-in is dispersed in ImagePy  , the main folder is not easy to manage.So we create a separate plug-in project warehouse, and create ` menus `, ` tools `, ` widgets ` three folders on the top floor of the warehouse , which contain plug-ins with functional division and correct order .
 
 
 
-**编写readme**
 
-readme原本只是用于项目介绍，但在ImagePy中将readme的前几行信息用作插件管理，所以readme前几行需要严格按照如下规范，以本项目为例：
+**write requirements**
+
+Python's biggest advantage is rich in library.As a plug-in project, it is likely to depend on other libraries.By convention, we need to writte the dependence to ` requirements. txt` (When installing a plug-in,ImagePy automatically calls pip to resolve dependency libraries, temporary support only pip, follow-up we will consider supporting conda)
+
+
+
+**write readme**
+
+Readme was originally intended for project introduction, but the first few lines of readme are used for plug-in management in ImagePy.So the first few lines of readme need to strictly follow the following specifications, taking this project as an example:
 
 ```markdown
 # Demo Plugin
@@ -66,36 +67,36 @@ Keyword: demo, tutorial
 
 Description: a friendly develop tutorial
 
-*以下可以随意书写*
+*Feel free to write in the following*
 
 ```
 
 
 
-**插件的安装**
+**Plugin installation**
 
-**`Plugins > Install > Install Plugin`** 在对话框中输入插件仓库的github连接，ImagePy即开始下载插件，解决依赖，并自动加载。加载成功后我们可以看到菜单栏，工具栏，组件栏自动更新。这样，把你的插件项目地址发给其他人，就可以安装，使用了。
+**`Plugins > Install > Install Plugin`** Enter the github link to the plug-in repository in the dialog box, and ImagePy starts downloading the plug-in, resolving dependencies, and loading it automatically. After loading successfully, we can see that the menu bar, toolbar and component bar are automatically updated. This way, you can send the address of your plug-in project to someone else and for better installing and using it.
 
 ![14](http://idoc.imagepy.org/demoplugin/30.png)
 
-<div align=center>插件的安装</div><br>
+<div align=center>Plugin installation</div><br>
 
-## 发布到 ImagePy
+## Published to ImagePy
 
-**给ImagePy发Pull Request**
+**Send Pull Requestion to ImagePy**
 
-你也可以将插件项目发布到ImagePy，如果你已经完成你的插件项目，那么发布是一个很简单的过程。只需要`fork`一份ImagePy，将你的`readme`文件拷贝到**`imagepy - Plugins - Contribute - Contributors`**下，重命名为插件项目名称（不强制，但最好能体现插件功能），然后给ImagePy提`Pull Request`。当ImagePy组织成员收到`Pull Request`，并进行测试后，会`merge`你的`Pull Request`，如有问题会通过`issue`进行沟通。一旦合并到ImagePy主分支内，用户即可通过插件管理器对插件进行检索，安装，卸载等操作。
+You can also publish your plug-in project to ImagePy, which is a simple process if you have completed your plug-in project. You only need to  ` fork ` a ImagePy, and copy your ` readme ` file to * * ` ImagePy - Plugins - Contribute - Contributors ` * *.Aftr renamed the plug-in project name (not mandatory, but it is the best that can reflect the plug-in function), you try  ImagePy ` Pull Request `. When ImagePy members receive ` Pull Request `, we will ` merge ` your ` Pull Request ` after the test.If any problem ,we will pass ` issue ` to communicate. Once incorporated into the ImagePy main branch, the user can retrieve, or install, or uninstall, and so on through the plug-in manager.
 
 ![14](http://idoc.imagepy.org/demoplugin/06.png)
 
 <div align=center>Plugins Manager</div><br>
 
-插件管理器会自动解析`contributors`目录下的插件信息，因而插件项目的`readme`务必按照格式认真书写，这会影响用户的检索体验。如果有更新，请修改版本号，重新`Pull Request`，插件管理器会自动检测更新。
+Plug-in manager will automatically parse ` contributors ` plug-in directory information, thus  ` readme ` of plug-in project must be in accordance with the format to write seriously.It will affect the user's search experience if not. If there is update, please modify the version number, a new ` Pull Request `.And plug-in manager will automatically detect updates.
 
 
 
-**关于顶级菜单**
+**About the top-level menu**
 
-我们看到安装插件后，插件项目中的功能也加载到了菜单栏，工具栏，组件栏中，可见插件项目中的menus，tools，widgets目录与ImagePy主项目中的目录具有等同效果。**如果不希望插件功能出现在顶级菜单，可以用文件夹结构进行控制**，比如希望出现在Plugin下，就在插件项目的menus目录下加一层Plugin，进而放我们自己的插件，启动后新功能就会出现在Plugins菜单下）
+We see that after installing the plug-in, the functions in the plug-in project are also loaded into the menu bar, toolbar, and components bar. We can see that the menus, tools, widgets directory in the plug-in project has the same effect as the directory in the main ImagePy project. ** if you don't want the Plugin functionality to be on the top menu, you can control it using the folder structure. **For example, if we want to get my menus to appear under the Plugin, we add a folder named Plugin to the menu of my Plugin project. 
 
-其实插件项目安装后会将项目解压到ImagePy下的`plugins`目录内，而ImagePy启动时，在解析主项目的目录后，也会解析插件项目的目录结构，这样实现了插件项目的相对独立管理。**由于顶级菜单空间稀缺，因而如果不是非常丰富，系统性很强的功能，请不要占用顶级菜单**
+After installing plug-in project , project is decompred into  `plugins ` directory of ImagePy.And ImagePy startup, after parsing main directory, which will parse the plugin directory structure of the project.So that independent management is achieved relatively for the plug-in projects. **As top-level menu space is scarce, please do not use it ,unless it has very rich and systematic functions**
