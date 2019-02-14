@@ -54,9 +54,9 @@ ImagePy Menu：`Plugins > Manager > Plugins Manager` input `demo`, and select th
 
 **[Report: generate report](doc/report.md)**
 
-1. [Personal Information](doc/report.md#Personal Information)
-2. [Coins Report: report for coins segment](doc/report.md#Coins Segmentation)
-3. [Rule of Report design](doc/report.md#Report template design principles)
+1. [Personal Information](doc/report.md#Personal-Information)
+2. [Coins Report: report for coins segment](doc/report.md#Coins-Segmentation)
+3. [Rule of Report design](doc/report.md#Report-template-design-principles)
 
 **[Filter: image filter in 2d](doc/filter.md)**
 
@@ -94,8 +94,8 @@ ImagePy Menu：`Plugins > Manager > Plugins Manager` input `demo`, and select th
 
 **[Widget: customed panel](doc/widget.md)**
 
-1. [Widget Demo:](doc/widget.md#Widget Demo)
-2. [Widget opterating mechanism](doc/widget.md#Widget opterating mechanism)
+1. [Widget Demo:](doc/widget.md#Widget-Demo)
+2. [Widget opterating mechanism](doc/widget.md#Widget-opterating-mechanism)
 
 
 
