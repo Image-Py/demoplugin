@@ -94,7 +94,7 @@ ImagePy Menu：`Plugins > Manager > Plugins Manager` input `demo`, and select th
 
 **[Widget: customed panel](doc/widget.md)**
 
-1. [Widget Demo:](doc/widget.md#Widget-Demo)
+1. [Widget Demo](doc/widget.md#Widget-Demo)
 2. [Widget opterating mechanism](doc/widget.md#Widget-opterating-mechanism)
 
 
