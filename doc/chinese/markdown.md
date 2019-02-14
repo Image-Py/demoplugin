@@ -1,6 +1,8 @@
-# Markdown Plugin
+# <span id = "Markdown">Markdown</span> 插件
 
-Markdown is a kind of Markup language, easy to read, suitable for writing document, ImagePy has direct support for Markdown, copy the markdown file to one of the menus or its subdirectories, it will be parsed into a menu item the next time it launches, the file name is the menu caption, click and the pop-up window will display the contents of Markdown.
+MarkDown是一种标记语言，简单易读，适合书写文档，ImagePy对Markdown有直接支持，将Markdown文件拷贝到menus或其子目录下，下次启动时会被解析成一个菜单项，文件名即菜单标题，点击后弹出窗口，显示Markdown的内容。
+
+
 
 ## MarkDown Demo
 

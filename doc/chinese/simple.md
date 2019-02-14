@@ -1,6 +1,6 @@
 # Simple
 
-Simple is another important addition to Filter. The difference is that Simple does not focus on single images, but treats image sequences as a whole for 3d processing. In addition, Simple is also used to manipulate relevant attributes outside of images, such as ROI, color index table, scale and unit, or image Mark.
+Simple是Filter之外的又一个比较重要的插件，不同的是Simple不着重处理单张图像，而是把图像序列当作整体进行三维处理，此外也用于操作图像之外的相关属性，如ROI, 色彩索引表，比例尺及单位，或图像Mark。
 
 
 
@@ -21,11 +21,11 @@ class Gaussian3D(Simple):
         imgs[:] = ndimg.gaussian_filter(imgs, para['sigma'])
 ```
 
-`stack3d` in  `note` identity is refers to the plug-in processing a continuous image stack. And `run` function can get image sequence of ` ndarray ` object by `imgs`, We carries on the three-dimensional gaussian filter, assign the result to ` imgs `.
+`note`里的`stack3d`标识是指插件处理一个连续的图像栈，而`run`函数里，可以通过`imgs`拿到图像序列，是一个`ndarray`对象，我们对其进行三维高斯滤波，结果重新赋值给`imgs`。
 
-Image sequence of ImagePy  include `stack2d`, `stack3d`. And ` stack2d ` image sequence is based on ` list`. It is easy to increase or delete `slice`. While `stack3d` is a continuous ` numpy ` array, and facilitate three-dimensional filter to direvtly analyze. We can tansform them through the `Image > Type > Trans to stack/list` .
+ImagePy里图像序列分`stack2d`，`stack3d`，其中`stack2d`是基于`list`的图像序列，便于增加，删除`slice`。而`stack3d`是一个连续的`numpy`数组，便于三维滤波，分析。我们可以通过 **`Image > Type > Trans to stack/list`** 进行转换。
 
-*the 2d gaussian based on Gaussian Filter can also process sequences, but the processing method is to treat each slice one by one, while the 3d based on Gaussian Filter also convolves in the z direction.*
+*基于Filter的二维高斯滤波也会处理序列，但处理方式是当成多个二维图像处理，而基于Simple的三维高斯滤波，则是在z方向也进行了卷积。*
 
 
 
@@ -46,7 +46,8 @@ class SetLUT(Simple):
         ips.lut = (cmap*np.arange(256)).astype(np.uint8).T
 ```
 
-Lookup table is a 255*3 color map that does not change the pixels, only the display of the image. It can be accessed or set via ips.lut. The range is a two element tuple, which sets the dynamic range of image pixels. For 8-bit images, it is usually (0, 255), but for float types, the range setting is very meaningful. In fact, when displaying, ImagePy first carries out clip on the image according to the range and scales it to 0-255, and then applies the lookup table.
+lookup table是一个255*3的色彩映射表，映射表并不改变像素，只改变图像的显示。可以通过ips.lut进行访问或设定。与之相关的还有一个ips.range，是一个二元tuple，设定图像像素的动态范围，对于8位图像，通常是0-255，但对于float类型，range的设定就非常有意义，事实上，在展示时，ImagePy先根据range将图像进行clip，并缩放到0-255，然后再套用索引表。
+
 ![14](http://idoc.imagepy.org/demoplugin/15.png)
 
 <div align=center>SetLUT</div><br>
@@ -67,7 +68,8 @@ class Inflate(Simple):
         ips.roi = ips.roi.buffer(para['r'])
 ```
 
-` ROI ` indicate what areas we care about, the `ROI` of ImagePy based on `Shapely` object. We can operate on the `ROI`, the above is to inflate the current ` ROI ` example.
+`ROI`指明哪些区域是我们关心的，ImagePy中的`ROI`基于`Shapely`对象，我们可以对其进行操作，以上是对当前`ROI`进行扩张的例子。
+
 
 ![14](http://idoc.imagepy.org/demoplugin/16.png)
 
@@ -89,7 +91,8 @@ class Unit(Simple):
         ips.unit = (para['scale'], para['unit'])
 ```
 
-It is in pixels unit to everything in the default ImagePy measurement and analysis results, but we can get and set it though `ips.unit`.
+默认情况ImagePy中的一切测量，分析结果以像素为单位，但我们可以通过`ips.unit`对其进行访问和设定。
+
 
 ![14](http://idoc.imagepy.org/demoplugin/17.png)
 
@@ -111,13 +114,14 @@ class Mark(Simple):
         ips.mark = GeometryMark({'type':'points', 'color':(255,0,0), 'lw':1, 'body':pts})
 ```
 
-` mark ` is covering on the image, the image itself does not change. ImagePy defines a set of geometric data results for drawing ` mark `, here is a brief introduction:
+`mark`是图像上的覆盖物，并不改变图像本身。ImagePy定义了一套几何数据结果用于绘制`mark`，这里简单介绍：
+
 ![14](http://idoc.imagepy.org/demoplugin/18.png)
 
 <div align=center>Set Random Point Mark</div><br>
 
 
-**Various Mark types and usages**
+**各种Mark类型及用法**
 
 **point:**
 
@@ -204,78 +208,77 @@ class Mark(Simple):
 
 
 
-**The above basic elements are similar in form. The meaning of each parameter is explained here:**
+**以上各个基础元素，形式类似，这里统一讲解各个参数的意义：**
 
-**type:** element type
+**type:** 元素类型
 
-**color:** colour
+**color:** 颜色
 
-**fcolor:** Fill color (only plane elements)
+**fcolor:** 填充色 (只有面状要素有)
 
-**fill:** Whether to fill (only plane elements)
+**fill:** 是否填充 (只有面状要素有)
 
-**lw:** Line width
+**lw:** 线条宽度
 
-**style:** Line style, with '-o' for both line and node drawn, or you can choose to draw only line or node, or neither
+**style:** 线条风格，有'-o'代表线条和节点都绘制，当然也可以选择只绘制线条或节点，或都不
 
-**size:** Text height (text only)
+**size:** 文字高度 (只有文字有)
 
-**body:** Geometric data, depending on the type
-
-
-
-**Point collection**
-
-**layer:** ` layer ` can specify ` color `, ` fcolor `, ` fill `, which is different from ` body ` .Because  ` body ` of   ` layer` deposit is the  of other basis elements, actually the above all sorts of elements.In addition to ` type `, ` body ` ,other attributes are not  necessary.If the current element is not specified, it will be taken from its ` layer `.If there is no subordinate ` layer `, or ` layer ` is not specified, the default value will be used.
-
-**layers:** ` layers ` is a set of more advanced elements than ` layer `. ` body `  of ` layers  `  is a dictionary, whose key is a layer of int. And in the image sequence, only paint layer number corresponding ` layer `, so that we can realize  each image of the image sequence a corresponding ` mark `.
+**body:** 几何数据，根据各个类型而定
 
 
-## Simple operating mechanism
+
+**要素集合**
+
+**layer:** `layer`可以指定`color`, `fcolor`, `fill`, 不同的是，`layer`的`body`存放的是其他基础要素，其实以上各种要素，除了`type`，`body`其他的属性都是非必须的，如果当前要素没有指定，则会取自其所属的`layer`，如果没有所属`layer`，或`layer`也未指定，则会使用默认。
+
+**layers:** `layers`是更高级的要素集合，与`layer`不同的是，`layers`的`body`是一个字典，其键是一个表示层数的int，而且在图像序列中，只绘制层号所对应的`layer`，这样可以实现对图像序列的每一张设定一个对应的`mark`。
+
+
+
+## Simple 运行机制
 
 **note:** 
 
-` note ` option is behavior control indicators, which is used to control the plug-in implementation process. Such as allowing framework compatible with the types of tests, if does not meet, it can be automatical suspensed. ` note ` option include set channel and sequence support settings, and whether to provide preview, ROI and other support.
+`note`选项是行为控制标识，用于控制插件执行的流程，比如让框架进行类型兼容检测，如不满足自动中止。设定通道和序列支持设定，以及是否需要提供预览，roi等支持。
 
-1. `all`：Plug-ins support any type
+1. `all`：插件支持任意类型
 
-2. `8-bit`：The plug-in supports unsigned 8 bits
+2. `8-bit`：插件支持无符号8位
 
-3. `16-bit`：The plug-in supports unsigned 16 bits
+3. `16-bit`：插件支持无符号16位
 
-4. `int`：The plug-in supports 32-bit, 64-bit integers
+4. `int`：插件支持32位，64位整数
 
-5. `rgb`：Plug-ins support 3 channels 24 - bit color
+5. `rgb`：插件支持3通道24位彩色
 
-6. `float`：The plug-in supports 32-bit, 64-bit floating point
+6. `float`：插件支持32位，64位浮点
 
    ---
 
-7. `req_roi`：Whether there must be ROI to handle
+7. `req_roi`：是否必须有roi才能够处理
 
-8. `stack`：The requirement must be a sequence of images
+8. `stack`：要求必须是图像序列
 
-9. `stack2d`：It has to be a list of discrete images(list)
+9. `stack2d`：要求必须是离散图像序列(list)
 
-10. `stack3d`：It has to be a continuous sequence of images.(ndarray)
+10. `stack3d`：要求必须是连续图像序列(ndarray)
 
-11. `preview`：Whether to display preview option
-
-    
+11. `preview`：是否显示预览选项
 
 **para, view:** 
 
-Parameter dictionary, see Start for details.
+参数字典，具体用法参阅start入门。
 
 **run:** 
 
-1. ` ips ` : image wrapper class, we can operate through ` ips ` ,` ROI `, ` mark `, ` lut `, ` range `, ` unit `, etc
-2. ` imgs ` : image sequence, carrying on the operation, such as three-dimensional filter, or analysis, can show the results in table form.
+1. `ips`：图像封装类，我们可以通过`ips`对`roi`, `mark`, `lut`, `range`, `unit`等进行操作
+2. `imgs`：图像序列，对其进行操作，如三维滤波，或分析，可以以表格形式展示结果。
 
 **load:** 
 
-` def load (self, ips) ` are executed first, if ` return ` results for ` False `, plug-in will suspend execution. The default return ` True `,.If necessary,  it can be overloaded and design a series of condition inspection.If not meet, ` IPy. Alert ` pop-up prompts, and returns the ` False `.
+`def load(self, ips)` 最先执行，如果`return`结果为`False`，插件将中止执行。默认返回`True`，如有必要，可以对其进行重载，进行一系列条件检验，如不满足，`IPy.alert` 弹出提示，并返回`False`。
 
 **preview:**
 
-` def preview (self, ips, para) ` Simple defines the ` preview ` option , but the default is to do nothing.Because it often requires a long operation time for the three dimensional filtering operation, therefore it is not suitable for  ` preview ` .It can be overloaded, if necessary.
+`def preview(self, ips, para)` Simple虽然定义了`preview`，但默认是什么也不做的，因为对于三维滤波等操作，往往需要很长的运算时间，因而并不适合预览，如有需要可以重载。

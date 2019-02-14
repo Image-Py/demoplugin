@@ -1,18 +1,21 @@
-#  Report Plugin
+#  Report 插件
 
-In many cases, we end up with the results of our analysis in report, generating PDF documents, or printing them. Although now LaTex, Markdown  based on the tag language document tools are very powerful, Excel software still has the widest audience,the quickliest start to fit task , the strongest form layout ability. Moreover Excel has powerful data processing, graph generating function. Thus ImagePy selects Excel as reporting features carrier, the user can design their Excel template, and add tags in a particular cell and save, change the suffix to `rpt`, you can get the report plugin of ImagePy .
-
-
-
-**How report plugins are loaded**
-
-1. The `rpt` suffix file under the menus and its subfolders is resolved into a report template.
-2. You can also drag and drop the template file into the bottom status bar of ImagePy to execute.
+很多问题，最终我们都需要将分析结果整理成报表，生成PDF文档，或者打印。虽然现在LaTex，Markdown等基于标签语言的文档工具非常强大，但是Excel依然是受众最广，上手最简单，精细布局能力最强的表格软件，此外Excel具有强大的数据处理，图表生成功能，因而ImagePy选择Excel作为报表功能载体，用户可自己设计Excel模板，并且在特定单元格中加入标记并保存，将后缀改为rpt，这样就成为了ImagePy的报表插件。
 
 
-## Personal Information
 
-Use a personal information card to show how to make templates and tag cells. In order to facilitate printing, we need to set the paper size as A5 according to our own situation. Second, for precise layout, we switched the Excel view to the page layout, so that all cell sizes are set in cm.
+**报表插件的加载方式**
+
+1. menus及其子文件夹下的rpt后缀文件会被解析成报表模板。
+2. 也可以将模板文件拖拽到ImagePy最下方的状态栏来执行。
+
+
+
+## 个人信息
+
+这里用一张个人信息卡来展示如何制作模板并标记单元格。为了方便打印，我们需要根据自己的情况，先设定纸张大小，这里设置为A5。其次为了精确布局，我们将Excel的视图切换为页面布局，这样单元格尺寸设定都会以cm为单位。
+
+---
 
 ![06](http://idoc.imagepy.org/demoplugin/33.png)
 
@@ -24,9 +27,9 @@ Use a personal information card to show how to make templates and tag cells. In 
 
 <div align=center>personal information result</div><br>
 
-## Coins Segmentation
+## 硬币分割
 
-We continue to use the example of coin segmentation and measurement to produce reports of the analysis results. Here, we carefully designed an experiment report, including basic information, processing pictures and result tables. We also made statistics on the results in Excel, and drew a histogram for the area column.
+我们继续用硬币分割与测量的例子，将分析结果制作成报表。这里我们精心设计一个实验报告，里面包基础信息，处理过程图片，以及结果表格，并在Excel中对结果做了统计，针对面积列，绘制了柱状图。
 
 ![06](http://idoc.imagepy.org/demoplugin/37.png)
 
@@ -36,32 +39,32 @@ We continue to use the example of coin segmentation and measurement to produce r
 
 <div align=center>generate coins report</div><br>
 
-## Report template design principles
+## 报表模板设计原则
 
-When executing report plug-in, ImagePy will firstly analyze Excel template, analyze each Work Sheet, detect each cell, extract all variable markers, and interact with users in the form of dialog box. After confirmation, all information will be backfilled and saved. It is very convenient to use, but we must follow certain principles to design the template, which is described in detail here.
-
-
-
-*In order to facilitate printing, we need to set the paper size according to our own situation, such as A4, A5. Second, for precise layout, we switched the Excel view to the page layout, so that all cell sizes are set in cm.*
+ImagePy在执行报表插件时，会首先对Excel模板进行解析，分析各个Work Sheet，并检测每个单元格，将所有变量标记提取，以对话框形式与用户交互，确认后，将全部信息回填，并另存。使用非常方便，但我们必须遵循一定的原则来设计模板，这里详细介绍。
 
 
 
-**Universal syntax**
+*为了方便打印，我们需要根据自己的情况，先设定纸张大小，例如 A4, A5。其次为了精确布局，我们将 Excel 的视图切换为页面布局，这样单元格尺寸设定都会以cm为单位。*
 
-`{type Var_Name = Default Value # note}`， Variable tags of any type follow this format, with curly braces for variable identifiers and other items. Some items are required and some are optional.
 
-**Underlying parameter**
 
-`int,float,str,txt,bool`：these basic parameters, syntax format consistent take STR as an example, `{str Name = YX Dragon # please input your name here}`，where type and variable name are required, default value and comment are optional. The difference between `str` and `txt` is that in the ImagePy interactive dialog, `txt` can receive multiple lines of text.
+**通用语法**
 
-**Selection parameter**
+`{type Var_Name = Default Value # note}`，任何类型的变量标记都遵循这个格式，其中大括号为变量标识，而其他项有些项是必须，有些可选，对于不同类型稍有差异，具体如下。
 
-`list`： usage example`{list Favourite_System = [Windows, Linux, Mac] # please select your favourite system}`，for the list, the default value must be provided, the options are separated by commas, the Spaces are ignored, the comments are optional.
+**基础参数**
 
-**Image parameter**
+`int,float,str,txt,bool`：这几个基础参数，语法格式一致以str为例，`{str Name = YX Dragon # please input your name here}`，其中类型与变量名是必须的，默认值与注释为可选。`str`与`txt`的差别在于，在ImagePy的交互对话框中，`txt`可以接收多行文字。
 
-`img`：usage example `{img My_Photo = [4.8,4.8,0.9,0] # you photo here`，for img type, the default value must be provided, it is an brackets, inside four numbers, respectively represents: length (cm), height (cm), white space ratio (0.9 represents 10% around), whether to stretch (0 represents holding ratio, 1 can be stretched), annotation is optional.
+**选择参数**
 
-**Table parameter**
+`list`：用法举例`{list Favourite_System = [Windows, Linux, Mac] # please select your favourite system}`，对于list选项，默认值必须提供，用中括号框住，选项用逗号分开，空格会被忽略，注释为可选。
 
-`tab`：usage example `{tab Record = [1,3,0,0] # the result table}`，for tab type, a default value must be provided in a bracket, incleded four numbers respectively: spacing (1 represents not merged cells), column spacing (1 represents not merged cells), the header row relative position (1 represents the data area on a line, 0 represents don't fill the title), indexed column line of position (-1 represents a left column of the data area ,0 represents no filling index), the annotation is optional.
+**图像参数**
+
+`img`：用法举例`{img My_Photo = [4.8,4.8,0.9,0] # you photo here`，对于img类型，默认值必须提供，是一个中括号，里面四个数字，分别代表：长度(cm)，高度(cm)，留白比例（0.9代表四周留10%），是否拉伸（0表示保持比例，1可以拉伸），注释为可选。
+
+**表格参数**
+
+`tab`：用法举例`{tab Record = [1,3,0,0] # the result table}`，对于tab类型，默认值必须提供，是一个中括号，里面四个数字，分别代表：行距（不合并单元格为1），列距（不合并单元格为1），标题行相对位置（-1代表数据区域的上一行，0代表不填充标题），索引列行对位置（-1代表数据区域的左边一列，0代表不填充索引），注释为可选。

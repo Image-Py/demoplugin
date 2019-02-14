@@ -1,21 +1,29 @@
-# Write Operation Manual
+# <span id = "为插件编写操作手册">为插件编写操作手册</span>
 
-The manual is not a required part, but it is very important that you write your own plug-in to better serve your users. Here we demonstrate how to write a manual for the plug-in.
+操作手册并不是必须部分，但希望自己编写的插件能更好的服务用户，它是是非常重要的。这里我们演示如何给插件编写操作手册。
 
-## Write The Opteration Manual
 
-Under the top-level directory of your plug-in project, create a `doc` folder, where you can write action documents for your plug-in using `markdown`. Note that the file name needs to be the same as the `title` of the plug-in, so that the `ImagePy` document manager can associate the document with the plug-in. Both tool-type and menu-type plug-ins can be documented.
 
-all the `markdown` files under `doc` are parsed and through the file name associated to the corresponding plugin, so there is no mandatory file organization way, but we strongly recommend that maintain a consistent with plug-in directory document directory (create `menus`, `tools`, `widgets` three top-level directory), convenient management and maintenance, so we can add more if necessary directory file, add the corresponding link, so the whole `doc` directory can also be read in the github or other online environment.
+## 编写操作手册
 
-## View Operation Manual
+在插件项目的顶级目录下，创建`doc`文件夹，在文件夹里即可用`markdown`为你的插件编写操作文档了，需要注意的是文件名需要与插件的`title`一致，这样ImagePy的文档管理器即可将文档与插件进行关联。工具类型的插件与菜单类型的插件都可以编写文档。
 
-When the plugin is finished, we can check the document in the following ways:
+`doc`下所有的`markdown`文件都会被解析并通过文件名关联给对应插件，所以这里并不强制要求文件组织方式，但我们强烈建议维护一个与插件目录一致的文档目录（创建`menus`，`tools`，`widgets`三个顶级目录），这样方便管理和维护，如果有必要我们可以加入多的目录文件，添加对应的跳转，这样整个`doc`目录也可以在github或其他在线环境中进行阅读。
 
-1. We can use the Help button in the parameter dialog.
-2. Right-click on the toolbar icon.
-3. Use the various **`Tree`** views under the **`Plugins > Manager`**
+
+
+## 查阅操作手册
+
+当插件编写完成后，我们有如下方式对文档进行查阅：
+
+1. 我们可以通过参数对话框的Help按钮
+
+2. 工具栏图标上右键单击
+
+3. 使用 **`Plugins > Manager`** 下的各种 **`Tree View`**
 
 ![14](http://idoc.imagepy.org/demoplugin/31.png)
 
 <div align=center>view doc from plugin tree view</div><br>   
+
+

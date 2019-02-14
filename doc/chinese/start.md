@@ -1,12 +1,12 @@
-# Start Here
+# 从这里开始
 
-We'll start with the Hello World example, which provides an introduction to the plug-in's loading mechanism and how to configure the parameters dialog for future development.
+这里我们用Hello World的例子来开始，顺带介绍插件的加载机制，以及如何配置参数对话框，为后续的开发做好准备。
 
 
 
-##  What is plugin
+##  什么是插件
 
-ImagePy is a highly extensible image processing framework. We extend the functions of ImagePy through plug-ins. A plug-in is a piece of code or a file that is placed in a specific location and automatically loaded when ImagePy is launched.  ImagePy native function does not enjoy any privileges in functions of ImagePy - actually. Plug-in is resolved into corresponding UI elements according to these plug-ins directory hierarchy. And we trigger it when click on the corresponding menu or tool. We can use the  `Plugins > Manager > Plugin Tree View`  to view the plug-in and its corresponding source code.
+ImagePy是一个扩展性很强的图像处理框架，我们是通过插件来对ImagePy进行功能扩展的，插件是一段代码或一个文件，放在特定的位置，在ImagePy启动时自动加载，其具体形式可以体现为菜单，工具栏，桌面小部件。其实在ImagePy中一切功能皆插件，ImagePy原生功能并不享受任何特权，这些插件根据目录层级解析成对应UI元素，并在点击时触发相应功能，我们可以使用**`Plugins > Manager > Plugin Tree View`**来查看插件及其对应的源码。
 
 ![31](http://idoc.imagepy.org/demoplugin/31.png)
 <div align=center>Plugins Tree View</div><br>
@@ -15,7 +15,7 @@ ImagePy is a highly extensible image processing framework. We extend the functio
 
 ## Hello World
 
-Let's start writing our first plug-in to implement a simple Hello World.
+我们开始写第一个插件，实现一个简单的hello world.
 
 ```python
 from imagepy.core.engine import Free
@@ -27,23 +27,23 @@ class Plugin(Free):
     def run(self, para=None):
         IPy.alert('Hello World, I am ImagePy!')
 ```
-This is one of the most simple plug-in, first `import Free, IPy `. Here `Free` is a plug-in type. This type of plug-in does not depend on anything. In `run`, we use `IPy.alert` to pop up a 'Hello world, I am ImagePy!' message box.
-![14](http://idoc.imagepy.org/demoplugin/01.png)
+这是一个最简单的插件，首先`import Free, IPy`. 这里的`Free`是一种插件类型，这种类型插件可以不依赖图像而运行，我们在`run`里面用`IPy.alert`弹出一个'Hello world, I am ImagePy!'的提示框。
 
+![14](http://idoc.imagepy.org/demoplugin/01.png)
 <div align=center>Hello World</div><br>
 
-**How is plugin loaded**
-We rename the script file as  `hello_plg.py`  above, and copy to ` imagepy > menus > Plugins ` directory in ImagePy. We restart ImagePy, and click  ` Plugins ` menu, then you will see our Hello World plug-in. Some loading principles are as follows:
+**如何加载**
+我们将上面的脚本文件命名为 `hello_plg.py`，拷贝到ImagePy目录下的`Imagepy > menus > Plugins`目录下，重新启动ImagePy，点开`Plugins`菜单，就会看到我们的插件。一些加载原则如下：
 
-1. `menus` and its subdirectories will be resolved.
-2. files end with `plg.py` will be resolved.
-3. ` Plugins ` class in the files will be resolved as a plug-in, ` title ` is menu's caption.
+1. `menus`及其子目录会被解析。
+2. `plg.py`的文件会被解析。
+3. 文件内的`Plugins`类会被解析为插件，`title`是菜单显示内容
 
 
 
 ## Who Are You
 
-Next we add some parameters to the plug-in, inviting the user to enter a name and age.
+接下来我们为这个插件添加一些参数，邀请用户输入名字和年龄。
 
 ```python
 from imagepy.core.engine import Free
@@ -59,7 +59,7 @@ class Plugin(Free):
         IPy.alert('Name:\t%s\r\nAge:\t%d'%(para['name'], para['age']))
 ```
 
-ImagePy framework implements the parameter dialog generation mechanism, which can generate the corresponding interaction according to `para`, `view`. After completion of interactions, we can get a result of the `para` parameters for interaction in the ` run ` function. In the next example ,we will make more detailed interpretation of the various types of parameters.
+ImagePy框架实现了参数对话框生成机制，可以根据`para`，`view`来生成对应的交互，完成交互后，我们在`run`函数中可以通过`para`参数获取交互结果，我们在下一个例子中会更加详细的讲解各种类型的参数生成。
 
 ![14](http://idoc.imagepy.org/demoplugin/02.png)
 <div align=center>Who Are You</div><br>
@@ -100,38 +100,38 @@ class Plugin(Free):
 
         IPy.alert('\r\n'.join(rst))
 ```
-Here we implement a questionnaire, which allow the user to input all kinds of information and to show the developer how to use `para`, `view` to configure parameter dialog that they want .
+这里我们实现一个调查问卷，让用户输入各类信息，同时也是为了向开发者展示，如何通过`para`，`view`来说配置出任何自己想要的参数对话框。
 
 
 ![14](http://idoc.imagepy.org/demoplugin/03.png)
 <div align=center>Questionnaire</div><br>
 
-**label:** para type：`no parameters required`, view usage：`('lab', 'lab', 'what you want to show')`
+**label:** para类型：`不需要参数`, view用法：`('lab', 'lab', 'what you want to show')`
 
-**str:** para type：`str`, view usage：`(str, key, prefix, suffix)`， the ` key ` is correspond with ` key ` of  ` para ` . ` prefix ` and ` suffix ` is used as  tips content before and after the input box.
+**str:** para类型：`str`, view用法：`(str, key, prefix, suffix)`，其中`key`要和`para`中的`key`对应，`prefix`，`suffix`用作输入框前后的提示内容。
 
-**int:** para type：`int`，view usage：`(int, key, (lim1, lim2), accu, 'prefix', 'suffix')`，the ` key ` is correspond with ` key ` of  ` para ` .` limit ` used to limit the range of input value，`accu` limits the number of decimal places (0).` prefix ` and ` suffix ` are used as  tips content before and after the input box.
+**int:** para类型：`int`，view用法：`(int, key, (lim1, lim2), accu, 'prefix', 'suffix')`，其中`key`要和`para`中的`key`对应，`limit`用于限定输入数值的范围，`accu`限定小数点位数(0)，`prefix`，`suffix`用作输入框前后的提示内容。
 
-**float:** para type：`float`，view usage：`(int, key, (lim1, lim2), accu, 'prefix', 'suffix')`，the ` key ` is correspond with ` key ` of  ` para ` .` limit ` used to limit the range of input value，`accu` limits the number of decimal places (0).` prefix ` and ` suffix ` are used as  tips content before and after the input box.
+**float:** para类型：`float`，view用法：`(int, key, (lim1, lim2), accu, 'prefix', 'suffix')`，其中`key`要和`para`中的`key`对应，`limit`用于限定输入数值的范围，`accu`限定小数点位数，`prefix`，`suffix`用作输入框前后的提示内容。
 
-**slider:** para type：`int/float`，view usage：`('slide', key, (lim1, lim2), accu, 'prefix')`，the ` key ` is correspond with ` key ` of  ` para ` .` limit ` used to limit the range of input value，`accu` limits the number of decimal places (0). ` prefix ` is used as  tips content before and after the input box.
+**slider:** para类型：`int/float`，view用法：`('slide', key, (lim1, lim2), accu, 'prefix')`，其中`key`要和`para`中的`key`对应，`limit`用于限定输入数值的范围，`accu`限定小数点位数，`prefix`用作输入框前后的提示内容。
 
-**bool:** para type：`bool`，view usage：`(bool, 'key', 'label')`，the ` key ` is correspond with ` key ` of  ` para ` .`label` is used as a hint.
+**bool:** para类型：`bool`，view用法：`(bool, 'key', 'label')`，其中`key`要和`para`中的`key`对应，`label`用作提示。
 
-**list:** para type：`any type`，view usage：`(list, key, [choices], type, prefix, suffix)`，the ` key ` is correspond with ` key ` of  ` para ` .`choices` is a character option, `type` is the expected output type, such as `str`, `int`. ` prefix ` and ` suffix ` are used as  tips content before and after the input box.
+**list:** para类型：`any type`，view用法：`(list, key, [choices], type, prefix, suffix)`，其中`key`要和`para`中的`key`对应，`choices`是字符选项，`type`是期望输出类型，如`str`, `int`，`prefix`，`suffix`用作选择框前后的提示内容。
 
-**choices:** para type：`str list`，view usage：`('chos', key, [choices], prefix, suffix)`，Similar to `list`, the difference is that `choices` can support multiple selections, and the options are recorded in the form of `list of string`.
+**choices:** para类型：`str list`，view用法：`('chos', key, [choices], prefix, suffix)`，与`list`类似，不同的是`choices`可以支持多选，选项以`list of string`形式记录。
 
-**color:** para type：`(r,g,b) 0-255`， usage：`('color', key, prefix, suffix)`，the ` key ` is correspond with ` key ` of  ` para ` .` prefix ` and ` suffix ` are used as  tips content before and after the input box.
-
-
-
-*In addition to the basic data types above, ImagePy also supports some parameters of internal types, such as receiving an image, receiving a table, or making single or multiple selections of the fields of the table, which we will show in later example*
+**color:** para类型：`(r,g,b) 0-255`，用法：`('color', key, prefix, suffix)`，其中`key`要和`para`中的`key`对应，`prefix`，`suffix`用作输入框前后的提示内容。
 
 
 
-## Implement multi-plugins in one file
-We implemented three plug-ins above. And Python has the advantage of being syntax-efficient, so we can implement multiple plug-ins in one file, as follows.
+*除以上基础数据类型之外，ImagePy还支持一些内部类型的参数，如接收一副图像，接收一个表格，或者对表格的字段进行单选或多选，这些我们在后续的示例中会有所展示*
+
+
+
+## 一个文件内实现多个插件
+以上我们分别实现了三个插件，而Python具有语法精简的优势，所以我们也可以在一个文件内实现多个插件，方法如下。
 
 ```python
 from imagepy.core.engine import Free
@@ -152,13 +152,13 @@ class Questionnaire(Free):
 plgs = [HelloWorld, WhoAreYou, Questionnaire]
 ```
 
-We will write three classes in a file, then add `plgs = []`, file named `start_plgs.py`. The framework loading principle is as follows:
+我们将三个类写在一个文件内，最后加上`plgs = []`，文件命名为`start_plgs.py`。框架加载原则如下：
 
-1.  files in the ` menus ` directory or subdirectory, end with `plgs.py` will be resolved as multi plug-in. 
-2.  `plgs` list in the file will be resolved one by one
-3. `'-'` in ` plgs`  will be resolved as a menu separator
+1. `menus`目录或子目录下的`plgs.py`结尾的文件会被当作多插件解析
+2. 插件内的`plgs`列表会被依次解析
+3. `plgs`内可以加入`'-'`，会被解析为菜单分隔符
 
 ![14](http://idoc.imagepy.org/demoplugin/04.png)
 
-<div align=center>resolved as menus</div><br>
+<div align=center>parse as menus</div><br>
 
