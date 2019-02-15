@@ -1,5 +1,8 @@
 # Filter Plugin
-Filter is the most important and basic plug-in used for filtering a 2d image.
+
+Filter is the most important class of plug-ins, which is used to filter two-dimensional images. And it is also the most basic image processing and the most common applications.
+
+
 
 ## Invert
 
@@ -14,7 +17,7 @@ class Invert(Filter):
         return 255-snap
 ```
 
-Invert plugin, `note` indicates that the plug-in supports ROI and Undo operation. We can return the filter result in `run` function. About `snap` and `img`, `img` is the current image, if the `auto_snap` is added in `note`，the framework would copy the `img` to `snap` befor `run` function, as many filter operation need a buffer.  Besides, undo operation and ROI support must rely on `snap`.
+Invert plug-in. The ` note ` indicates the plugin supports any type as well as ` roi ` and the undo operation. We return processing results to the ` run `. About ` snap ` and ` img `, the ` img ` is the current image. When ` note ` is added to ` auto_snap ` logo,  the framework will help us to copy ` img ` to ` snap `  before ` run `. Because most of the filter need a ` buffer ` for convolution. Moreover the cancellation operation and ` roi ` support must also need the ` snap `.
 
 ![14](http://idoc.imagepy.org/demoplugin/13.png)
 
@@ -38,8 +41,7 @@ class Gaussian(Filter):
         gaussian_filter(snap, para['sigma'], output=img)
 ```
 
-Gaussian plugin，`note` indicates that the plug-in supports all types, `roi` and `undo` operation. It also supports the `preview` feature. `para` and `view` configure a float type  parameter `sigma`. In function `run`，the `scipy.ndimage.gaussian_filter` is called to filter the `snap`, and fill output `img`. If there is no output parameter in the function, return the result from `run`, then ImagePy would help us to fill `img` by the result.
-
+Gaussian plug-in. The ` note ` specifies any type support, and supports the ` roi ` as well as cancellation, which provides the preview function. The ` para ` and ` view ` indicate there is a floating point parameters ` sigma `. In ` run `, we can call ` scipy. ndimage. gaussian_filter `  to filter ` snap ` with the output to ` img `. If a function without output item, we will process the results ` return `. And framework will help us to assign a value to ` img `.
 
 ![14](http://idoc.imagepy.org/demoplugin/14.png)
 
@@ -47,53 +49,56 @@ Gaussian plugin，`note` indicates that the plug-in supports all types, `roi` an
 
 
 
-## Filter operating mechanism
+## Filter operation mechanism
 
 **note:** 
-`note` option is the behavior control identifier, to control the flow of plugin execution. 
-**i.e.:** Let the framework perform type compatibility detection, if not satisfied, it will be automatic ended. Set channel and sequence support settings. More : preview, ROI supports and other ones.
 
-1. `all`: Plugin supports all types.
-2. `8-bit`: Plugin supports unsigned 8 bit
-3. `16-bit`: Plugin supports unsigned 16 bit
-4. `int`: Plugin supports 32-bit, 64-bit integers
-5. `rgb`: Plugin supports 3 channels, 24-bit color
-6. `float`: Plugin supports 32-bit, 64-bit floating point.
+The note option is a behavior control identifier that controls the flow that the plug-in performs. For example, the framework performs type compatibility checks, and is automatic abortsed if they are not met. Set channel and sequence support settings, and whether to provide preview, roi and other support.
 
-------
+1. `all`：The plug-in supports any type
 
-7. `not_channel`: Do not automatically traverse the channel when processing multiple channels (by default, each channel will be processed in turn)
+2. `8-bit`：The plug-in supports unsigned 8 bits
 
-8. `not_slice`: When processing image sequences, do not ask `if you want to batch process` (users are asked by default)
+3. `16-bit`：The plug-in supports unsigned 16 bits
 
-9. `req_roi`: Whether there must be a ROI to be able to handle
+4. `int`：The plug-in supports 32-bit, 64-bit integers
 
----
+5. `rgb`：The plug-in supports 3 channels, 24 - bit color
 
-10. `auto_snap`: Whether the framework is required to automatically buffer the current image on the processor
+6. `float`：The plug-in supports 32-bit, 64-bit floating point
 
-11. `auto_msk`: Whether to automatically support ROI (**must be effective with `auto_snap`**, the principle is to use `snap` to restore pixels outside the ROI)
+   ------
 
-12. `preview`: Whether to support preview (view results in real time), to adjust parameters
+7. `not_channel`：When working with multiple channels, we set to not allow the framework to automatically traverse channels (Each channel is processed in turn by default)
 
-13. `2int`: Whether to convert data below `int32` to `int32` and then process it (for example, avoid `8-bit` operation overflow)
+8. `not_slice`：When processing image sequences, we set to not ask if you want to batch them (Users are asked by default)
 
-14. `2float`: Whether to automatically convert data below float32 to float32 and then process it during operation (some operations require precision)
+9. `req_roi`：Whether there must be roi to handle
 
-    
+   ---
 
-**para, view:** Parameter dictionary, for specific usage, see [start](doc/start.md).
+10. `auto_snap`：Whether it is needed for the frame to automatically buffer the current image in the processor
+
+11. `auto_msk`：Whether roi is automatically supported or not(It must be combined with auto_snap to take effect, and the principle is to use snap to restore pixels other than roi)
+
+12. `preview`：Whether preview is supported to adjust parameters to see the results in real time
+
+13. `2int`：Whether to convert data lower than int32 to int32 for further processing (For example, to avoid 8-bit operation overflow)
+
+14. `2float`：Whether to automatically convert the data lower than float32 to float32 for further processing during processing (some operations require precision)
+
+**para, view:** Parameter dictionary, see start for details.
 
 **run:** 
 
-1. `ips`: Image wrapper class, usually does not need to be operated in `filter` 
-2. `snap`: as the `auto_snap` is added in `note`, before `run`, the framework imagepy will copy the opened image to `snap` (as much as possible to deal with `snap`, and assign the results to `img`)
-3. `img`: opened image, the result is assigned to `img`, or `return` results, assigned `img` by imagepy, and complete the interface refresh
+1. ` ips ` : image wrapper class.  The ` filter ` don't need often to operate it.
+2. ` snap ` : when joining the ` auto_snap ` logo  in ` note `,  framework will copy current image to ` snap ` before ` run ` ( As much as possible to use snap to deal with implementations, the results will be assigned to the img)
+3. ` img ` : current image. We will  assign the result to ` img `, or we ` return ` results. The framework assign  result  to ` img `, and complete refreshing the interface.
 
 **load:** 
 
-`def load(self, ips)` is executed at first，if the `False` is returned with `return` , the plugin will be ended. Default return is `True`, if neccesary, it can be overloaded for a series of condition checks. If it is not satisfied, the `IPy.alert` will popup prompt, and return`False` 
+` def load (self, ips) ` are executed first. If result of the ` return ` is ` False `, plug-in will suspend execution. The default returns ` True `. If necessary, it can be overloaded with a series of condition inspection.If not met, ` IPy. alert ` will pop up prompts, and will return the ` False `.
 
 **preview:**
 
-`def preview(self, ips, para)` is executed during preview, the opened image is processed with calling `run` by default, and can be overloaded if necessary.
+` def preview (self, ips, para) ` can be executed when selecting preview status. The default will call ` run ` to process current image. If necessary, it can be overloaded.
