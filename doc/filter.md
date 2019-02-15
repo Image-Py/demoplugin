@@ -49,7 +49,7 @@ Gaussian plug-in. The ` note ` specifies any type support, and supports the ` ro
 
 
 
-## Filter operation mechanism
+## Filter operating mechanism
 
 **note:** 
 
