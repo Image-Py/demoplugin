@@ -17,3 +17,5 @@ check the indecate we need, here check the "cov", count the cov ellipse.
 ## Export Result
 1. CSV Save
 save the measure result as a csv file.
+2. Coins Report
+generate result report.
