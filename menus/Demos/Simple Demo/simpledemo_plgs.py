@@ -1,5 +1,4 @@
 from imagepy.core.engine import Simple
-from imagepy.core.mark import GeometryMark
 import scipy.ndimage as ndimg
 import numpy as np
 

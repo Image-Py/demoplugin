@@ -1,4 +1,3 @@
-from imagepy import IPy
 import wx
 
 class Plugin ( wx.Panel ):
@@ -20,6 +19,7 @@ class Plugin ( wx.Panel ):
 		self.btn_invert.Bind( wx.EVT_BUTTON, self.on_invert)
 
 	def on_invert(self, event):
-		if IPy.get_ips() is None: return
-		IPy.get_ips().img[:] = 255-IPy.get_ips().img
-		IPy.get_ips().update()
+		ips = self.app.get_img()
+		if ips is None: return
+		ips.img[:] = 255-ips.img
+		ips.update()

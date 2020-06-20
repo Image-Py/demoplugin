@@ -1,11 +1,10 @@
 from imagepy.core.engine import Free
-from imagepy import IPy
 
 class HelloWorld(Free):
 	title = 'Hello World'
 
 	def run(self, para=None):
-		IPy.alert('Hello World, I am ImagePy!')
+		self.app.alert('Hello World, I am ImagePy!')
 
 class WhoAreYou(Free):
 	title = 'Who Are You'
@@ -14,7 +13,7 @@ class WhoAreYou(Free):
 			(int, 'age', (0,120), 0, 'age', 'years old')]
 
 	def run(self, para=None):
-	    IPy.alert('Name:\t%s\r\nAge:\t%d'%(para['name'], para['age']))
+	    self.app.alert('Name:\t%s\r\nAge:\t%d'%(para['name'], para['age']))
 
 class Questionnaire(Free):
 	title = 'Questionnaire'
@@ -42,6 +41,6 @@ class Questionnaire(Free):
 			'Like lanuage:%s'%para['lan'],
 			'Favourite Color:%s'%str(para['c'])]
 
-		IPy.alert('\r\n'.join(rst))
+		self.app.alert('\r\n'.join(rst))
 
 plgs = [HelloWorld, WhoAreYou, Questionnaire]

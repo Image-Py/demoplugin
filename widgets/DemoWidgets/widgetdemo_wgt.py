@@ -1,10 +1,10 @@
-from imagepy import IPy
 import wx
 
 class Plugin ( wx.Panel ):
 	title = 'Widget Demo'
-	def __init__( self, parent ):
+	def __init__( self, parent ,app):
 		wx.Panel.__init__ ( self, parent)
+		self.app = app
 		sizer = wx.BoxSizer( wx.VERTICAL )
 		self.lable = wx.StaticText( self, wx.ID_ANY, 'This is a widgets demo')
 		self.lable.Wrap( -1 )
@@ -18,7 +18,7 @@ class Plugin ( wx.Panel ):
 		self.btn_invert.Bind( wx.EVT_BUTTON, self.on_invert)
 
 	def on_invert(self, event):
-		ips = IPy.get_ips()
+		ips = self.app.get_img()
 		if ips is None: return
 		ips.img[:] = 255-ips.img
 		ips.update()

@@ -1,5 +1,4 @@
 from imagepy.core.engine import Free
-from imagepy import IPy
 import numpy as np
 
 class NewImage(Free):
@@ -11,19 +10,19 @@ class NewImage(Free):
 
     def run(self, para = None):
         imgs = [np.zeros((para['h'], para['w']), dtype=np.uint8)]
-        IPy.show_img(imgs, para['name'])
+        self.app.show_img(imgs, para['name'])
 
 class About(Free):
     title = 'About Demo'
 
     def run(self, para=None):
-        IPy.alert('ImagePy v0.2')
+        self.app.alert('ImagePy v0.2')
 
 class Close(Free):
     title = 'Exit Program Demo'
     asyn = False
 
     def run(self, para = None):
-        IPy.curapp.Close()
+        self.app.Close()
 
 plgs = [NewImage, About, Close]

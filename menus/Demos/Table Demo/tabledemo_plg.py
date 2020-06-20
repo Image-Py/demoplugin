@@ -1,5 +1,4 @@
 from imagepy.core.engine import Free, Table
-from imagepy import IPy
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -11,7 +10,7 @@ class Score(Free):
 		index = ['Stutent%s'%i for i in range(1,6)]
 		columns = ['Math', 'Physics', 'Biology', 'History']
 		score = (np.random.rand(20)*40+60).reshape((5,4)).astype(np.uint8)
-		IPy.show_table(pd.DataFrame(score, index, columns), 'Scores')
+		self.app.show_table(pd.DataFrame(score, index, columns), 'Scores')
 
 class Sort(Table):
 	title = 'Table Sort Demo'
