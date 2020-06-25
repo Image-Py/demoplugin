@@ -1,7 +1,6 @@
 from imagepy.core.engine import Free, Table
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 class Score(Free):
 	title = 'Student Score'
@@ -29,7 +28,9 @@ class Bar(Table):
 	view = [('fields', 'item', 'select items')]
 
 	def run(self, tps, snap, data, para = None):
-		data[para['item']].plot.bar(stacked=True, grid=True, title='Score Chart')
-		plt.show()
+		plt = self.app.show_plot('Score Chart')
+		data[para['item']].plot.bar(stacked=True, grid=True, 
+			title='Score Chart', ax=plt.add_subplot())
+		plt.Show()
 
 plgs = [Score, Sort, Bar]

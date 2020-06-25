@@ -1,0 +1,98 @@
+Demos::插件示例
+
+Start Here::从这里开始
+
+Hello World::你好，ImagePy
+	Hello World, I am ImagePy!::你好，我是ImagePy！
+
+Who Are You::你是谁
+	name::姓名
+	please::请填写
+	age::年龄
+	years old::岁
+
+Questionnaire::调查问卷
+	This is a questionnaire::这是一张调查问卷
+	name::姓名
+	please::请填写
+	age::年龄
+	years old::岁
+	height::身高
+	m::米
+	kg::公斤
+	do you like sport::你喜欢运动吗
+	favourite::喜爱
+	system::操作系统
+	lanuage you like(multi)::你喜欢的操作系统(可多选)
+	which::你喜欢的
+	you like::颜色
+
+Markdown Demo::文档示例
+
+Macros Demo::宏示例
+
+Macros Gaussian Invert::高斯-反向
+
+Macros Coins Segment::硬币分割
+
+Workflow Demo::工作流示例
+
+Workflow Coins Demo::硬币分割 工作流
+
+Report Demo::报表示例
+
+Personal Information::个人信息
+
+Coins Report::硬币结果报表
+
+Filter Demo::Filter示例
+
+Gaussian Demo::高斯滤波示例
+
+Invert Demo::反向示例
+
+Simple Demo::Simple示例
+
+Gaussian 3D Demo::三维高斯滤波示例
+	sigma::标准差
+	pix::像素
+
+Set LUT Demo::设置颜色索引示例
+
+Inflate ROI Demo::扩张ROI示例
+	radius::半径
+	pix::像素
+
+Scale And Unit Demo::比例尺和单位示例
+	scale::比例尺
+	unit::单位
+
+Random Points Demo::随机点示例
+
+Table Demo::Table示例
+
+Student Score::学生成绩示例
+
+Table Sort Demo::表格排序示例
+	item::项目
+
+Score Chart Demo::成绩图标示例
+	select items::选择绘制项目
+
+Free Demo::Free示例
+
+New Image Demo::新建图像示例
+	name::名称
+	width::宽度
+	height::高度
+	pix::像素
+
+About Demo::关于对话框示例
+
+Exit Program Demo::退出程序示例
+
+DemoTool::示例
+
+Widget Demo::控件示例
+	This is a widgets demo::这是一个控件示例
+	Invert curent image::反向当前图像

@@ -2,7 +2,7 @@ import wx
 
 class Plugin ( wx.Panel ):
 	title = 'Widget Demo'
-	def __init__( self, parent ,app):
+	def __init__( self, parent, app=None):
 		wx.Panel.__init__ ( self, parent)
 		self.app = app
 		sizer = wx.BoxSizer( wx.VERTICAL )

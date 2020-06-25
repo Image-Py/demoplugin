@@ -2,8 +2,9 @@ import wx
 
 class Plugin ( wx.Panel ):
 	title = 'Widget Demo'
-	def __init__( self, parent ):
+	def __init__( self, parent, app=None):
 		wx.Panel.__init__ ( self, parent)
+		self.app = app
 		sizer = wx.BoxSizer( wx.VERTICAL )
 		self.lable = wx.StaticText( self, wx.ID_ANY, 'This is a widgets demo')
 		self.lable.Wrap( -1 )
@@ -11,11 +12,9 @@ class Plugin ( wx.Panel ):
 		self.btn_invert = wx.Button( self, wx.ID_ANY, 'Invert curent image')
 		sizer.Add( self.btn_invert, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
-		
 		self.SetSizer( sizer )
 		self.Layout()
 		self.Fit()
-		# Connect Events
 		self.btn_invert.Bind( wx.EVT_BUTTON, self.on_invert)
 
 	def on_invert(self, event):

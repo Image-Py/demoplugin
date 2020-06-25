@@ -1,4 +1,5 @@
 from imagepy.core.engine import Simple
+from sciapp.object import ROI, mark2shp, geom2shp, geom_flatten
 import scipy.ndimage as ndimg
 import numpy as np
 
@@ -14,7 +15,7 @@ class Gaussian3D(Simple):
 
 class SetLUT(Simple):
 	title = 'Set LUT Demo'
-	note = ['all']
+	note = ['8-bit']
 	para = {'lut':'red'}
 	view = [(list, 'lut', ['red', 'green', 'blue'], str, 'look up', 'table')]
 
@@ -29,14 +30,15 @@ class Inflate(Simple):
 	view = [(int, 'r', (1,100),0, 'radius', 'pix')]
 
 	def run(self, ips, imgs, para = None):
-		ips.roi = ips.roi.buffer(para['r'])
+		geom = ips.roi.to_geom().buffer(para['r'])
+		ips.roi = ROI(geom2shp(geom_flatten(geom)))
 
 class Unit(Simple):
 	title = 'Scale And Unit Demo'
 	note = ['all']
 	para = {'scale':1, 'unit':'mm'}
 	view = [(float, 'scale', (1e-3,1e3), 3, 'scale', ''),
-			(str, 'unit', 'scale', '')]
+			(str, 'unit', 'unit', '')]
 
 	def run(self, ips, imgs, para = None):
 		ips.unit = (para['scale'], para['unit'])
@@ -47,6 +49,6 @@ class Mark(Simple):
 
 	def run(self, ips, imgs, para = None):
 		pts = (np.random.rand(200)*512).reshape((100,2))
-		ips.mark = GeometryMark({'type':'points', 'color':(255,0,0), 'lw':1, 'body':pts})
+		ips.mark = mark2shp({'type':'points', 'color':(255,0,0), 'lw':1, 'body':pts})
 
 plgs = [Gaussian3D, SetLUT, Inflate, Unit, Mark]
